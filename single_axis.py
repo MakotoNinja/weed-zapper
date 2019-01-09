@@ -5,6 +5,7 @@
 import os
 import json
 import requests
+from farmware_tools import device
 
 def get_env(key, type_=int):
 	'Return the value of the namespaced Farmware input variable.'
@@ -29,4 +30,5 @@ def post(wrapped_data):
 
 	if __name__ == "__main__":
 		farmware_name = 'single_axis'
-		post(set_servo_angle(get_env('axis'), get_env('position')))
+		#post(set_servo_angle(get_env('axis'), get_env('position')))
+		device.log('Bot is at position {{ x }}, {{ y }}, {{ z }}.', 'success', ['toast'])
