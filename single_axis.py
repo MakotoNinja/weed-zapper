@@ -11,10 +11,10 @@ def get_env(key, type_=int):
 	return type_(os.environ['{}_{}'.format(farmware_name, key)])
 
 def single_axis(axis, pos):
-	'Wrap the data in a `set_servo_angle` Celery Script command to send it.'
+	'Wrap the data in a `single_axis` Celery Script command to send it.'
 	return {
-		"kind": "set_servo_angle",
-		"args": {"pin_number": pin, "pin_value": angle}
+		"kind": "single_axis",
+		"args": {"axis": axis, "pos": value}
 	}
 
 def post(wrapped_data):
@@ -29,4 +29,4 @@ def post(wrapped_data):
 
 	if __name__ == "__main__":
 		farmware_name = 'single_axis'
-		post(set_servo_angle(get_env('pin_number'), get_env('servo_angle')))
+		post(set_servo_angle(get_env('axis'), get_env('position')))
