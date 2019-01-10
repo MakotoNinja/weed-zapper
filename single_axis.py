@@ -16,5 +16,5 @@ coord = device.assemble_coordinate(0, 0, 0)
 #axis = get_config_value('Single Axis', 'axis', str).lower()
 #positions[axis] = int(get_config_value('Single Axis', 'pos'))
 
-log = 'Axis: {}, Position: {}, State: {}'.format(axis, pos, coord)
+log = 'Axis: {}, Coordinate: {}'.format(axis, coord)
 device.log(log, 'info', ['toast'])
