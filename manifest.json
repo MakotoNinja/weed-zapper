@@ -3,7 +3,7 @@
 	"language": "python",
 	"author": "MakotoNinja",
 	"description": "Move a single axis.",
-	"version": "1.0.29",
+	"version": "1.0.30",
 	"min_os_version_major": 6,
 	"url": "https://raw.githubusercontent.com/MakotoNinja/SingleAxis/master/manifest.json",
 	"zip": "https://github.com/MakotoNinja/SingleAxis/archive/master.zip",
