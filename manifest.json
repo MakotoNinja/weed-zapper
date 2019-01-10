@@ -3,12 +3,12 @@
 	"language": "python",
 	"author": "MakotoNinja",
 	"description": "Move a single axis.",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"min_os_version_major": 6,
 	"url": "https://raw.githubusercontent.com/MakotoNinja/SingleAxis/master/manifest.json",
 	"zip": "https://github.com/MakotoNinja/SingleAxis/archive/master.zip",
 	"executable": "python",
-	"args": ["singleaxis-master/single_axis.py"],
+	"args": ["SingleAxis-master/single_axis.py"],
 	"config": [
 		{"name": "axis", "label": "Axis (X, Y, Z):", "value": "Z" },
 		{"name": "pos", "label": "Position:", "value": 0 }
