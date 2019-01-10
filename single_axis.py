@@ -9,9 +9,12 @@ from farmware_tools import device
 from farmware_tools import app
 from farmware_tools import get_config_value
 
-x=y=z=0
-axis = get_config_value('Single Axis', 'axis', str)
+positions = {'x' : 0, 'y' : 0, 'z' : 0}
+for position in positions:
+	positions[position] = device.get_current_position(position)
+
+axis = get_config_value('Single Axis', 'axis', str).lower()
 pos = get_config_value('Single Axis', 'pos')
-bot_state = device.get_current_position()
-log = 'Axis: {}, Position: {}, State: {}'.format(axis, pos, bot_state)
+
+log = 'Axis: {}, Position: {}, State: {}'.format(axis, pos, positions)
 device.log(log, 'info', ['toast'])
