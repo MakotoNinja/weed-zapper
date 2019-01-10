@@ -14,7 +14,7 @@ for position in positions:
 	positions[position] = device.get_current_position(position)
 
 axis = get_config_value('Single Axis', 'axis', str).lower()
-posistions[axis] = get_config_value('Single Axis', 'pos')
+positions[axis] = get_config_value('Single Axis', 'pos')
 
 log = 'Axis: {}, Position: {}, State: {}'.format(axis, pos, positions)
 device.log(log, 'info', ['toast'])
