@@ -7,9 +7,10 @@
 import os
 from farmware_tools import device
 from farmware_tools import app
+from farmware_tools import get_config_value
 
 x=y=z=0
-axis = os.environ.get('axis')
-position = os.environ.get('pos')
-log = 'Axis: {}, Position:{}'.format(axis, position)
+axis = get_config_value('SingleAxis', 'axis')
+pos = get_config_value('SingleAxis', 'pos')
+log = 'Axis: {}, Position: {}'.format(axis, pos)
 device.log(log, 'info', ['toast'])
