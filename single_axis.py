@@ -5,5 +5,7 @@
 '''
 
 from farmware_tools import device
+from farmware_tools import app
 
-device.log('Hello Farm.')
+points = app.get('points')
+device.log(points)
