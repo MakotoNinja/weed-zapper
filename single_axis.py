@@ -7,5 +7,4 @@
 from farmware_tools import device
 from farmware_tools import app
 
-points = app.get('points')
-device.log(points)
+device.log('Bot is at position {{ x }}, {{ y }}, {{ z }}.', 'success', ['toast'])
