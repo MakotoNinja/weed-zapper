@@ -22,4 +22,4 @@ coord['args'][single_axis] = int(get_config_value('Single Axis', 'pos'))
 log = "Moving '%s' axis to %d" % (single_axis, coord['args'][single_axis])
 device.log(log, 'info', ['toast'])
 # perform the move
-device.move_absolute(coord, 100, assemble_coordinate(0, 0, 0))
+device.move_absolute(coord, 100, device.assemble_coordinate(0, 0, 0))
