@@ -18,7 +18,8 @@ for axis in coord['args']:
 single_axis = get_config_value('Single Axis', 'axis', str).lower()
 coord['args'][single_axis] = int(get_config_value('Single Axis', 'pos'))
 
-#device.move_absolute(coord)
 #log = 'Axis: {}, Coordinate: {}'.format(single_axis, coord)
 log = "Moving '%s' axis to %d" % (single_axis, coord['args'][single_axis])
 device.log(log, 'info', ['toast'])
+# perform the move
+device.move_absolute(coord)
