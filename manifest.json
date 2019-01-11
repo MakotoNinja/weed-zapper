@@ -1,16 +1,16 @@
 {
-	"package": "Single Axis",
+	"package": "Random Move Relative",
 	"language": "python",
 	"author": "MakotoNinja",
-	"description": "Move a single axis to absolute poisiton.",
-	"version": "1.0.33",
+	"description": "Random Move Relative.",
+	"version": "1.0.1",
 	"min_os_version_major": 6,
-	"url": "https://raw.githubusercontent.com/MakotoNinja/SingleAxis/master/manifest.json",
-	"zip": "https://github.com/MakotoNinja/SingleAxis/archive/master.zip",
+	"url": "https://raw.githubusercontent.com/MakotoNinja/random-move-relative/master/manifest.json",
+	"zip": "https://github.com/MakotoNinja/random-move-relative/archive/master.zip",
 	"executable": "python",
 	"args": ["SingleAxis-master/single_axis.py"],
 	"config": [
-		{"name": "axis", "label": "Axis (X, Y, Z):", "value": "Z" },
-		{"name": "pos", "label": "Position:", "value": 0 }
+		{"name": "x_lo", "label": "X Low:", "value": 5 },
+		{"name": "x_hi", "label": "X HIGH:", "value": 10 }
 	]
 }
