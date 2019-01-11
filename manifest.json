@@ -3,7 +3,7 @@
 	"language": "python",
 	"author": "MakotoNinja",
 	"description": "Random Move Relative.",
-	"version": "1.0.6",
+	"version": "1.0.8",
 	"min_os_version_major": 6,
 	"url": "https://raw.githubusercontent.com/MakotoNinja/random-move-relative/master/manifest.json",
 	"zip": "https://github.com/MakotoNinja/random-move-relative/archive/master.zip",
@@ -12,9 +12,9 @@
 	"config": [
 		{"name": "x_lo", "label": "X Low:", "value": 5 },
 		{"name": "x_hi", "label": "X HIGH:", "value": 10 },
-		{"name": "y_lo", "label": "X Low:", "value": 5 },
-		{"name": "y_hi", "label": "X HIGH:", "value": 10 },
-		{"name": "z_lo", "label": "X Low:", "value": 0 },
-		{"name": "z_hi", "label": "X HIGH:", "value": 0 }
+		{"name": "y_lo", "label": "Y Low:", "value": 5 },
+		{"name": "y_hi", "label": "Y HIGH:", "value": 10 },
+		{"name": "z_lo", "label": "Z Low:", "value": 0 },
+		{"name": "z_hi", "label": "Z HIGH:", "value": 0 }
 	]
 }
