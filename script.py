@@ -8,7 +8,7 @@ import os
 from farmware_tools import device
 from farmware_tools import app
 from farmware_tools import get_config_value
-from random import randint
+#from random import randint
 
 # create Celery coordinate node
 coord = device.assemble_coordinate(0, 0, 0)
