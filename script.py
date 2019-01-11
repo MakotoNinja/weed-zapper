@@ -15,8 +15,8 @@ coord = device.assemble_coordinate(0, 0, 0)
 
 # get input values
 for axis in coords['args']:
-	lo = int(get_config_value('Random Move Relative', (axis + '_lo')))
- 	hi = int(get_config_value('Random Move Relative', (axis + '_hi')))
+	lo = 5#int(get_config_value('Random Move Relative', (axis + '_lo')))
+ 	hi = 10#int(get_config_value('Random Move Relative', (axis + '_hi')))
 	#coord['args'][axis] = randint(lo, hi)
 	log = axis.upper() + ': ' + randint(lo, hi)
 	device.log(log, 'info', ['toast'])
