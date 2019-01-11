@@ -13,19 +13,13 @@ from random import randint
 # create Celery coordinate node
 coord = device.assemble_coordinate(0, 0, 0)
 
-rand_vals = {
-	'x' : {'lo' : 0, 'hi' : 0},
-	'y' : {'lo' : 0, 'hi' : 0},
-	'z' : {'lo' : 0, 'hi' : 0},
-}
 # get input values
-for axis in rand_vals:
-	rand_vals[axis]['lo'] = int(get_config_value('Random Move Relative', axis + '_lo'))
- 	rand_vals[axis]['hi'] = int(get_config_value('Random Move Relative', axis + '_hi'))
+for axis in coords['args']:
+	x_lo = int(get_config_value('Random Move Relative', axis + '_lo'))
+ 	x_hi = int(get_config_value('Random Move Relative', axis + '_hi'))
+	coord['args'][axis] = randint(x_lo, x_hi)
 
-
-#log = 'Axis: {}, Coordinate: {}'.format(single_axis, coord)
-log = "Random X: {}".format(rand_vals)
+log = "Random X: {}".format(coord)
 device.log(log, 'info', ['toast'])
 # perform the move
-#device.move_absolute(coord, 100, device.assemble_coordinate(0, 0, 0))
+#device.move_relative(coord, 100, device.assemble_coordinate(0, 0, 0))
