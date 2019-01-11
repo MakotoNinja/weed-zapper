@@ -28,4 +28,4 @@ for axis in coord:
 log = "Moving relative: {}".format(coord)
 device.log(log, 'info', ['toast'])
 # perform the move
-device.move_relative(coord['x'], coord['x'], coord['z'], 100)
+device.move_relative(coord['x'], coord['y'], coord['z'], 100)
