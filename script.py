@@ -14,7 +14,7 @@ from farmware_tools import get_config_value
 coord = device.assemble_coordinate(0, 0, 0)
 
 # get input values
-for axis in coords['args']:
+for axis in coord['args']:
 	lo = 5#int(get_config_value('Random Move Relative', (axis + '_lo')))
  	hi = 10#int(get_config_value('Random Move Relative', (axis + '_hi')))
 	#coord['args'][axis] = randint(lo, hi)
