@@ -18,7 +18,7 @@ for axis in coords['args']:
 	lo = 5#int(get_config_value('Random Move Relative', (axis + '_lo')))
  	hi = 10#int(get_config_value('Random Move Relative', (axis + '_hi')))
 	#coord['args'][axis] = randint(lo, hi)
-	log = ': ' + randint(lo, hi)
+	log = ': '# + randint(lo, hi)
 	device.log(log, 'info', ['toast'])
 
 #log = "Random X: {}".format(coord)
