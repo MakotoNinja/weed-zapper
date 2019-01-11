@@ -8,7 +8,7 @@
 	"url": "https://raw.githubusercontent.com/MakotoNinja/random-move-relative/master/manifest.json",
 	"zip": "https://github.com/MakotoNinja/random-move-relative/archive/master.zip",
 	"executable": "python",
-	"args": ["SingleAxis-master/single_axis.py"],
+	"args": ["random-move-relative-master/script.py"],
 	"config": [
 		{"name": "x_lo", "label": "X Low:", "value": 5 },
 		{"name": "x_hi", "label": "X HIGH:", "value": 10 }
