@@ -19,7 +19,7 @@ for axis in coord['args']:
  	hi = int(get_config_value('Random Move Relative', (axis + '_hi')))
 	coord['args'][axis] = randint(lo, hi)
 
-log = "Coord: {}".format(coord)
+log = "Moving relative: {}".format(coord['args'])
 device.log(log, 'info', ['toast'])
 # perform the move
-#device.move_relative(coord, 100, device.assemble_coordinate(0, 0, 0))
+device.move_relative(coord, 100, device.assemble_coordinate(0, 0, 0))

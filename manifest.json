@@ -3,7 +3,7 @@
 	"language": "python",
 	"author": "MakotoNinja",
 	"description": "Random Move Relative.",
-	"version": "1.0.13",
+	"version": "1.0.1",
 	"min_os_version_major": 6,
 	"url": "https://raw.githubusercontent.com/MakotoNinja/random-move-relative/master/manifest.json",
 	"zip": "https://github.com/MakotoNinja/random-move-relative/archive/master.zip",
