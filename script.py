@@ -18,7 +18,7 @@ for axis in coord:
 	lo = int(get_config_value('Random Move Relative', (axis + '_lo')))
  	hi = int(get_config_value('Random Move Relative', (axis + '_hi')))
 	pos = randint(lo, hi)
-	pos *= -1 if randint(0, 1): esle pass
+	pos *= -1 if randint(0, 1): else pass
 	coord[axis] = pos
 
 log = "Moving relative: {}".format(coord)
