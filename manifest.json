@@ -3,7 +3,7 @@
 	"language": "python",
 	"author": "MakotoNinja",
 	"description": "Playing with point data.",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"min_os_version_major": 6,
 	"url": "https://raw.githubusercontent.com/MakotoNinja/point-data/master/manifest.json",
 	"zip": "https://github.com/MakotoNinja/point-data/archive/master.zip",
