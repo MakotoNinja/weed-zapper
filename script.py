@@ -4,7 +4,7 @@
  ' Playing with points
 '''
 
-import os
+import os, json
 from farmware_tools import device, app
 from farmware_tools import get_config_value
 
