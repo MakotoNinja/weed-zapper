@@ -11,8 +11,9 @@ from farmware_tools import get_config_value
 points = app.get_points()
 plants = app.get_plants()
 
-log = "Points: {}".format(json.dumps(points))
-device.log(log, 'info', ['toast'])
+def del_all_points():
+	for point in points:
+		app.delete(point['id'])
 
-log = "Plants: {}".format(json.dumps(plants))
-device.log(log, 'info', ['toast'])
+del_all_points()
+device.sync()
