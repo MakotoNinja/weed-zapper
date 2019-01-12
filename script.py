@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 '''
- ' Single Axis
+ ' Random Move Relative
 '''
 
 import os
@@ -10,19 +10,15 @@ from farmware_tools import app
 from farmware_tools import get_config_value
 from random import randint
 
-# create Celery coordinate node
-coord = {
-	'x' : 0,
-	'y' : 0,
-	'z' : 0
-}
+# coordinate dict
+coord = {'x' : 0, 'y' : 0, 'z' : 0}
 
-# get input values
+# loop over axes andd apply a random offset
 for axis in coord:
 	lo = int(get_config_value('Random Move Relative', (axis + '_lo')))
  	hi = int(get_config_value('Random Move Relative', (axis + '_hi')))
 	pos = randint(lo, hi)
-	if not randint(0, 1): pos *= -1
+	pos *= -1 if randint(0, 1): esle pass
 	coord[axis] = pos
 
 log = "Moving relative: {}".format(coord)
