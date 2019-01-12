@@ -5,15 +5,14 @@
 '''
 
 import os, json
-from farmware_tools import device, app
-from farmware_tools import get_config_value
+from farmware_tools import device, app, get_config_value
 
 points = app.get_points()
 plants = app.get_plants()
 
-def del_all_points():
+def del_all_points(points):
 	for point in points:
 		app.delete(point['id'])
 
-del_all_points()
+del_all_points(points)
 device.sync()
