@@ -12,7 +12,10 @@ plants = app.get_plants()
 
 def del_all_points(points):
 	for point in points:
-		app.delete(point['id'])
+		try:
+			app.delete('points', point['id'])
+		except:
+			log = "App Error - Point ID: {}".format(point['id'])
 
 del_all_points(points)
 device.sync()
