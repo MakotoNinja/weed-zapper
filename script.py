@@ -9,6 +9,10 @@ from farmware_tools import device, app
 from farmware_tools import get_config_value
 
 points = app.get_points()
+plants = app.get_planys()
 
 log = "Points: {}".format(points)
+device.log(log, 'info', ['toast'])
+
+log = "Plants: {}".format(plants)
 device.log(log, 'info', ['toast'])
