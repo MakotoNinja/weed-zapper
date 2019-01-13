@@ -17,7 +17,7 @@ def del_all_points(points):
 		except:
 			device.log("App Error - Point ID: {}".format(point['id']), 'error')
 
-def delete_all_weeds(points):
+def del_all_weeds(points):
 	num_weeds = 0
 	for point in points:
 		if 'weed' in point['name'].lower():
@@ -28,5 +28,5 @@ def delete_all_weeds(points):
 				device.log("App Error - Point ID: {}".format(point['id']), 'error')
 	return num_weeds
 
-delete_all_points(points)
+del_all_points(points)
 device.sync()
