@@ -23,7 +23,7 @@ def delete_all_weeds(points):
 		if 'weed' in point['name'].lower():
 			try:
 				app.delete('points', point['id'])
-				weeds += 1
+				num_weeds += 1
 			except:
 				device.log("App Error - Point ID: {}".format(point['id']), 'error')
 	return num_weeds
