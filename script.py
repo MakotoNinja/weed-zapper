@@ -15,7 +15,7 @@ def del_all_points(points):
 		try:
 			app.delete('points', point['id'])
 		except:
-			log = "App Error - Point ID: {}".format(point['id'])
+			device.log("App Error - Point ID: {}".format(point['id']))
 
 del_all_points(points)
 device.sync()
