@@ -28,6 +28,6 @@ def delete_all_weeds(points):
 				device.log("App Error - Point ID: {}".format(point['id']))
 	return num_weeds
 
-#deleted_weeds = del_all_weeds(points)
+deleted_weeds = del_all_weeds(points)
 #device.log('Deleted {} weed points.'.format(deleted_weeds))
 device.sync()
