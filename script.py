@@ -29,5 +29,5 @@ def delete_all_weeds(points):
 	return num_weeds
 
 deleted_weeds = del_all_weeds(points)
-device.log('Deleted {} weed points.'.format(deleted_weeds))
+#device.log('Deleted {} weed points.'.format(deleted_weeds))
 device.sync()
