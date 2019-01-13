@@ -45,7 +45,8 @@ def get_pos(coord, axis):
 	return coord['args'][axis]
 
 def set_pos(coord, axis, value):
-	return coord['args'][axis]
+	coord['args'][axis] = value
+	return coord
 
 def weed_scan():
 	coord = device.assemble_coordinate(50, 50, 0)
