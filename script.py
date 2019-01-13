@@ -25,7 +25,7 @@ def delete_all_weeds(points):
 				app.delete('points', point['id'])
 				weeds += 1
 			except:
-				device.log("App Error - Point ID: {}".format(point['id']))
+				device.log("App Error - Point ID: {}".format(point['id']), 'error')
 	return num_weeds
 
 deleted_weeds = delete_all_weeds(points)
