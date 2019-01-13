@@ -1,16 +1,19 @@
 {
-	"package": "Point Data",
+	"package": "Weeder Routine",
 	"language": "python",
 	"author": "MakotoNinja",
-	"description": "Playing with point data.",
-	"version": "1.0.2",
+	"description": "A weeding routine for Farmbot.",
+	"version": "1.0.1",
 	"min_os_version_major": 6,
-	"url": "https://raw.githubusercontent.com/MakotoNinja/point-data/master/manifest.json",
-	"zip": "https://github.com/MakotoNinja/point-data/archive/master.zip",
+	"url": "https://raw.githubusercontent.com/MakotoNinja/weeder-routine/master/manifest.json",
+	"zip": "https://github.com/MakotoNinja/weeder-routine/archive/master.zip",
 	"executable": "python",
-	"args": ["point-data-master/script.py"],
+	"args": ["weeder-routine-master/script.py"],
 	"config": [
-		{"name": "sequence_name", "label": "Sequence Name", "value": " " },
-		{"name": "farmware_name", "label": "Farmware Name", "value": " " }
+		{"name": "x_max", "label": "Max X", "value": "" },
+		{"name": "y_max", "label": "Max Y", "value": "" },
+		{"name": "z_max", "label": "Max Z", "value": "" },
+		{"name": "x_move", "label": "X Move Increment", "value": 300 },
+		{"name": "y_move", "label": "Y Move Increment", "value": 250 }
 	]
 }
