@@ -3,7 +3,7 @@
 	"language": "python",
 	"author": "MakotoNinja",
 	"description": "A weeding routine for Farmbot.",
-	"version": "1.0.2",
+	"version": "1.0.1",
 	"min_os_version_major": 6,
 	"url": "https://raw.githubusercontent.com/MakotoNinja/weeder-routine/master/manifest.json",
 	"zip": "https://github.com/MakotoNinja/weeder-routine/archive/master.zip",
@@ -13,6 +13,8 @@
 		{"name": "x_max", "label": "Max X", "value": "" },
 		{"name": "y_max", "label": "Max Y", "value": "" },
 		{"name": "z_max", "label": "Max Z", "value": "" },
+		{"name": "x_start", "label": "Start X", "value": "" },
+		{"name": "y_start", "label": "Start Y", "value": "" },
 		{"name": "x_move", "label": "X Move Increment", "value": 300 },
 		{"name": "y_move", "label": "Y Move Increment", "value": 250 }
 	]

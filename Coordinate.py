@@ -15,7 +15,7 @@ class Coordinate:
 	def get_coordinate(self):
 		return self.coordinate['args']
 
-	def set_coordinate(x, y, z):
+	def set_coordinate(x=0, y=0, z=0):
 		self.coordinate['args']['x'] = x
 		self.coordinate['args']['y'] = y
 		self.coordinate['args']['z'] = z

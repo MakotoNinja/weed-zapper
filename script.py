@@ -14,6 +14,9 @@ Z_MAX = get_config_value('Weeder Routine', 'z_max')
 
 X_MOVE = get_config_value('Weeder Routine', 'x_move')
 Y_MOVE = get_config_value('Weeder Routine', 'y_move')
+X_START = get_config_value('Weeder Routine', 'x_start')
+Y_START = get_config_value('Weeder Routine', 'y_start')
+
 points = app.get_points()
 plants = app.get_plants()
 
@@ -36,16 +39,14 @@ def del_all_weeds(points):
 	return num_weeds
 
 def weed_scan():
-	coord = Coordinate(50,50)
+	coord = Coordinate(X_START, Y_START)
 	offset = device.assemble_coordinate(0, 0, 0)
 	device.move_absolute(coord.get(), 100, offset)
-	cp = device.get_current_position('y')
-	device.log('Y: {}, type: {}, Y_MAX - Y_MOVE: {}'.format(cp, type(cp), Y_MAX - Y_MOVE), 'info')
 	while device.get_current_position('y') < Y_MAX - Y_MOVE:
 		while device.get_current_position('x') < X_MAX - X_MOVE:
 			coord.set_pos('x', coord.get_pos('x') + X_MOVE)
 			device.move_absolute(coord.get(), 100, offset)
-		coord.set_coordinate(50, coord.get_pos('y') + Y_MOVE)
+		coord.set_coordinate(X_START, coord.get_pos('y') + Y_MOVE)
 		device.move_absolute(coord.get(), 100, offset)
 	device.log('Scan Complete.', 'info', ['toast'])
 
