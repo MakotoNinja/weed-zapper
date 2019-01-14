@@ -3,7 +3,7 @@
 	"language": "python",
 	"author": "MakotoNinja",
 	"description": "A weeding routine for Farmbot.",
-	"version": "1.0.1",
+	"version": "1.0.3",
 	"min_os_version_major": 6,
 	"url": "https://raw.githubusercontent.com/MakotoNinja/weeder-routine/master/manifest.json",
 	"zip": "https://github.com/MakotoNinja/weeder-routine/archive/master.zip",

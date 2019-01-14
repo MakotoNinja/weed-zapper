@@ -9,22 +9,25 @@ from farmware_tools import device, app, get_config_value
 from Coordinate import Coordinate
 
 input_errors = []
-def qualify_input(package, name, data_type):
+def qualify_int(package, name):
 	global input_errors
-	data = get_config_value(package, name, data_type)
-	if data_type == int:
+	data = get_config_value(package, name, int)
+	try:
+		data = int(data)
+	except:
+		input_errors.append('Must be integer for input: {}.'.format(name))
+	else:
+		return data
+
+def qualify_sequence(seq_name):
+	if len(''.join(seq_name.split())) > 0 and seq_name.lower() not 'none':
 		try:
-			data = int(data)
+			sequence_id = app.find_sequence_by_name(name = seq_name)
 		except:
-			input_errors.append('Must be integer for input: {}.'.format(name))
-		else:
-			return data
-	elif data_type == str:
-		if len(''.join(data.split())) <= 0:
-			input_errors.append('Nothing was entered for input: {}.'.format(name))
-		else:
-			return data
-	return None
+			imput_errors.append('Failed to find sequence ID for {}'.format(seq_name))
+		return dequence_id
+	elif len(''.join(seq_name.split())) <= 0:
+		imput_errors.append('Enter "None" if no sequence is desired for {}'.format(seq_name))
 
 
 def del_all_points(points):
@@ -65,16 +68,16 @@ def weed_scan():
 		device.move_absolute(coord.get(), 100, offset)
 	device.log('Scan Complete.', 'info', ['toast'])
 
-X_START = qualify_input('Weeder Routine', 'x_start', int)
-Y_START = qualify_input('Weeder Routine', 'y_start', int)
-X_MAX = qualify_input('Weeder Routine', 'x_max', int)
-Y_MAX = qualify_input('Weeder Routine', 'y_max', int)
-Z_MAX = qualify_input('Weeder Routine', 'z_max', int)
-X_MOVE = qualify_input('Weeder Routine', 'x_move', int)
-Y_MOVE = qualify_input('Weeder Routine', 'y_move', int)
+X_START = qualify_int('Weeder Routine', 'x_start', int)
+Y_START = qualify_int('Weeder Routine', 'y_start', int)
+X_MAX = qualify_int('Weeder Routine', 'x_max', int)
+Y_MAX = qualify_int('Weeder Routine', 'y_max', int)
+Z_MAX = qualify_int('Weeder Routine', 'z_max', int)
+X_MOVE = qualify_int('Weeder Routine', 'x_move', int)
+Y_MOVE = qualify_int('Weeder Routine', 'y_move', int)
 
-tool_water = get_config_value('Weeder Routine', 'tool_water', str) #optional
-tool_weed = qualify_input('Weeder Routine', 'tool_weed', str)
+tool_water = qualify_sequence('Weeder Routine', 'tool_water', str) #optional
+tool_weed = qualify_sequence('Weeder Routine', 'tool_weed', str)
 
 points = app.get_points()
 plants = app.get_plants()
@@ -84,11 +87,7 @@ if len(input_errors):
 		device.log(err, 'error', ['toast'])
 	sys.exit()
 
-device.log('Tool Water: {}, Type: {}'.format(tool_water, type(tool_water)), 'info', ['toast'])
-try:
-	sequence_id = app.find_sequence_by_name(name = tool_water)
-except:
-	device.log('Failed to find sequence ID for {}'.format(tool_water), 'info', ['toast'])
+
 
 """
 del_all_points(points)
