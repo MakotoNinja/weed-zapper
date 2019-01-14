@@ -41,7 +41,7 @@ def weed_scan():
 	offset = device.assemble_coordinate(0, 0, 0)
 	device.move_absolute(coord.get(), 100, offset)
 	cp = device.get_current_position('y')
-	device.log('Y: {}, type: {}'.format(cp, type(cp)), 'info')
+	device.log('Y: {}, type: {}, Y_MAX - Y_MOVE: {}'.format(cp, type(cp), Y_MAX - Y_MOVE), 'info')
 	while device.get_current_position('y') < Y_MAX - Y_MOVE:
 		while device.get_current_position('x') < X_MAX - X_MOVE:
 			coord.set_pos('x', coord.get_pos('x') + X_MOVE)
