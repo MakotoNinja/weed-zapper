@@ -60,8 +60,8 @@ def weed_scan():
 
 del_all_points(points)
 device.sync()
-weed_scan()
-device.sync()
+#weed_scan()
+#device.sync()
 
 points = app.get_points()
 plants = app.get_plants()
