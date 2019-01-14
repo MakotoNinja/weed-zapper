@@ -68,9 +68,8 @@ def weed_scan():
 		device.move_absolute(coord.get(), 100, offset)
 	device.log('Scan Complete.', 'info', ['toast'])
 
-X_START = qualify_int('Weeder Routine', 'x_start', int)
-Y_START = qualify_int('Weeder Routine', 'y_start', int)
-"""
+X_START = qualify_int('Weeder Routine', 'x_start')
+Y_START = qualify_int('Weeder Routine', 'y_start')
 X_MAX = qualify_int('Weeder Routine', 'x_max', int)
 Y_MAX = qualify_int('Weeder Routine', 'y_max', int)
 Z_MAX = qualify_int('Weeder Routine', 'z_max', int)
@@ -90,7 +89,7 @@ if len(input_errors):
 
 
 
-
+"""
 del_all_points(points)
 device.sync()
 weed_scan()
