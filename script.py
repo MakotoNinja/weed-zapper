@@ -84,6 +84,7 @@ if len(input_errors):
 		device.log(err, 'error', ['toast'])
 	sys.exit()
 
+device.log('Tool Water: {}, Type: {}'.format(tool_water, type(tool_water)), 'info', ['toast'])
 try:
 	sequence_id = app.find_sequence_by_name(name = tool_water)
 except:
