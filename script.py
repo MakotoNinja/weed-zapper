@@ -8,22 +8,7 @@ import os, sys, json
 from farmware_tools import device, app, get_config_value
 from Coordinate import Coordinate
 
-X_START = qualify_input('Weeder Routine', 'x_start', int)
-Y_START = qualify_input('Weeder Routine', 'y_start', int)
-X_MAX = qualify_input('Weeder Routine', 'x_max', int)
-Y_MAX = qualify_input('Weeder Routine', 'y_max', int)
-Z_MAX = qualify_input('Weeder Routine', 'z_max', int)
-X_MOVE = qualify_input('Weeder Routine', 'x_move', int)
-Y_MOVE = qualify_input('Weeder Routine', 'y_move', int)
-
-tool_water = get_config_value('Weeder Routine', 'tool_water', str) #optional
-tool_weed = qualify_input('Weeder Routine', 'tool_weed', str)
-
-points = app.get_points()
-plants = app.get_plants()
-
 input_errors = []
-
 def qualify_input(package, name, data_type):
 	global input_errors
 	data = get_config_value(package, name, data_type)
@@ -80,6 +65,20 @@ def weed_scan():
 			coord.set_coordinate(X_START, coord.get_pos('y') + Y_MOVE)
 		device.move_absolute(coord.get(), 100, offset)
 	device.log('Scan Complete.', 'info', ['toast'])
+
+X_START = qualify_input('Weeder Routine', 'x_start', int)
+Y_START = qualify_input('Weeder Routine', 'y_start', int)
+X_MAX = qualify_input('Weeder Routine', 'x_max', int)
+Y_MAX = qualify_input('Weeder Routine', 'y_max', int)
+Z_MAX = qualify_input('Weeder Routine', 'z_max', int)
+X_MOVE = qualify_input('Weeder Routine', 'x_move', int)
+Y_MOVE = qualify_input('Weeder Routine', 'y_move', int)
+
+tool_water = get_config_value('Weeder Routine', 'tool_water', str) #optional
+tool_weed = qualify_input('Weeder Routine', 'tool_weed', str)
+
+points = app.get_points()
+plants = app.get_plants()
 
 if len(input_errors):
 	for err in input_errors:
