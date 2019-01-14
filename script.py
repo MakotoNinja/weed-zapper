@@ -83,6 +83,9 @@ if len(input_errors):
 	for err in input_errors:
 		device.log(err, 'error', ['toast'])
 	sys.exit()
+
+sequence_id = app.find_sequence_by_name(name = tool_water)
+
 """
 del_all_points(points)
 device.sync()
@@ -91,5 +94,3 @@ device.sync()
 """
 points = app.get_points()
 plants = app.get_plants()
-
-#sequence_id = app.find_sequence_by_name(name = )
