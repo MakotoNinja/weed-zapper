@@ -85,7 +85,7 @@ if len(input_errors):
 	sys.exit()
 
 sequence_id = app.find_sequence_by_name(name = tool_water)
-
+device.log('Sequrence ID: {}'.format(sequence_id), 'info', ['toast'])
 """
 del_all_points(points)
 device.sync()
