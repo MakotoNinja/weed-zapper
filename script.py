@@ -66,5 +66,5 @@ device.sync()
 points = app.get_points()
 plants = app.get_plants()
 
-device.log(app.get_tool_slots())
+device.log(app.get_tool_slots(get_info = app._get_required_info))
 #sequence_id = app.find_sequence_by_name(name = )
