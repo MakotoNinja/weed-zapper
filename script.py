@@ -84,8 +84,11 @@ if len(input_errors):
 		device.log(err, 'error', ['toast'])
 	sys.exit()
 
-sequence_id = app.find_sequence_by_name(name = tool_water)
-device.log('Sequrence ID: {}'.format(sequence_id), 'info', ['toast'])
+try:
+	sequence_id = app.find_sequence_by_name(name = tool_water)
+except:
+	device.log('Failed to find sequence ID for {}'.format(tool_water), 'info', ['toast'])
+
 """
 del_all_points(points)
 device.sync()
