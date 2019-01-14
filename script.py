@@ -53,9 +53,4 @@ def weed_scan():
 
 #device.execute_script(label='my-farmware')
 del_all_points(points)
-#weed_scan()
-coord = Coordinate(50,50)
-offset = device.assemble_coordinate(0, 0, 0)
-device.move_absolute(coord.get(), 100, offset)
-device.log('Y: {}'.format(device.get_current_position('y')), 'info', ['toast'])
-device.log('Bot State: {}'.format(device.get_bot_state()), 'info', ['toast'])
+weed_scan()
