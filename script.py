@@ -77,7 +77,7 @@ Z_MAX = qualify_int(PACKAGE, 'z_max')
 X_MOVE = qualify_int(PACKAGE, 'x_move')
 Y_MOVE = qualify_int(PACKAGE, 'y_move')
 
-tool_water = qualify_sequence(PACKAGE, 'tool_water', str) #optional
+#tool_water = qualify_sequence(PACKAGE, 'tool_water', str) #optional
 #tool_weed = qualify_sequence(PACKAGE, 'tool_weed', str)
 
 points = app.get_points()
