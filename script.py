@@ -20,14 +20,14 @@ def qualify_int(package, name):
 		return data
 
 def qualify_sequence(seq_name):
-	if len(''.join(seq_name.split())) > 0 and seq_name.lower() not 'none':
+	if len(''.join(seq_name.split())) > 0 and not seq_name.lower() == 'none':
 		try:
 			sequence_id = app.find_sequence_by_name(name = seq_name)
 		except:
-			imput_errors.append('Failed to find sequence ID for {}'.format(seq_name))
+			input_errors.append('Failed to find sequence ID for {}'.format(seq_name))
 		return dequence_id
 	elif len(''.join(seq_name.split())) <= 0:
-		imput_errors.append('Enter "None" if no sequence is desired for {}'.format(seq_name))
+		input_errors.append('Enter "None" if no sequence is desired for {}'.format(seq_name))
 
 
 def del_all_points(points):
