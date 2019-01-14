@@ -4,21 +4,43 @@
  ' Weeding Routine for Farmbot
 '''
 
-import os, json
+import os, sys, json
 from farmware_tools import device, app, get_config_value
 from Coordinate import Coordinate
 
-X_MAX = get_config_value('Weeder Routine', 'x_max')
-Y_MAX = get_config_value('Weeder Routine', 'y_max')
-Z_MAX = get_config_value('Weeder Routine', 'z_max')
+X_START = qualify_input('Weeder Routine', 'x_start', int)
+Y_START = qualify_input('Weeder Routine', 'y_start', int)
+X_MAX = qualify_input('Weeder Routine', 'x_max', int)
+Y_MAX = qualify_input('Weeder Routine', 'y_max', int)
+Z_MAX = qualify_input('Weeder Routine', 'z_max', int)
+X_MOVE = qualify_input('Weeder Routine', 'x_move', int)
+Y_MOVE = qualify_input('Weeder Routine', 'y_move', int)
 
-X_MOVE = get_config_value('Weeder Routine', 'x_move')
-Y_MOVE = get_config_value('Weeder Routine', 'y_move')
-X_START = get_config_value('Weeder Routine', 'x_start')
-Y_START = get_config_value('Weeder Routine', 'y_start')
+tool_water = get_config_value('Weeder Routine', 'tool_water', str) #optional
+tool_weed = qualify_input('Weeder Routine', 'tool_weed', str)
 
 points = app.get_points()
 plants = app.get_plants()
+
+input_errors = []
+
+def qualify_input(package, name, data_type):
+	global input_errors
+	data = get_config_value(package, name, data_type)
+	if data_type == int:
+		try:
+			data = int(data)
+		except:
+			input_errors.append('Must be integer for input: {}.'.format(name))
+		else:
+			return data
+	elif data_type == str:
+		if len(''.join(data.split())) <= 0:
+			input_errors.append('Nothing was entered for input: {}.'.format(name))
+		else:
+			return data
+	return None
+
 
 def del_all_points(points):
 	for point in points:
@@ -58,14 +80,17 @@ def weed_scan():
 		device.move_absolute(coord.get(), 100, offset)
 	device.log('Scan Complete.', 'info', ['toast'])
 
+if len(input_errors):
+	for err in input_errors:
+		device.log(err, 'error', ['toast'])
+	sys.exit()
+"""
 del_all_points(points)
 device.sync()
-#weed_scan()
-#device.sync()
-
+weed_scan()
+device.sync()
+"""
 points = app.get_points()
 plants = app.get_plants()
 
-tools = app.get_toolslots()
-device.log("Tools: {}".format(json.dumps(tools)), 'info')
 #sequence_id = app.find_sequence_by_name(name = )
