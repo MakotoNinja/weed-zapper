@@ -7,14 +7,13 @@
 import os, json
 from farmware_tools import device, app, get_config_value
 from Coordinate import Coordinate
-"""
+
 X_MAX = get_config_value('Weeder Routine', 'x_max')
 Y_MAX = get_config_value('Weeder Routine', 'y_max')
 Z_MAX = get_config_value('Weeder Routine', 'z_max')
 
 X_MOVE = get_config_value('Weeder Routine', 'x_move')
 Y_MOVE = get_config_value('Weeder Routine', 'y_move')
-"""
 points = app.get_points()
 plants = app.get_plants()
 
