@@ -68,17 +68,17 @@ def weed_scan():
 		device.move_absolute(coord.get(), 100, offset)
 	device.log('Scan Complete.', 'info', ['toast'])
 
-X_START = qualify_int('Weeder Routine', 'x_start')
-Y_START = qualify_int('Weeder Routine', 'y_start')
-X_MAX = qualify_int('Weeder Routine', 'x_max', int)
-Y_MAX = qualify_int('Weeder Routine', 'y_max', int)
-"""
-Z_MAX = qualify_int('Weeder Routine', 'z_max', int)
-X_MOVE = qualify_int('Weeder Routine', 'x_move', int)
-Y_MOVE = qualify_int('Weeder Routine', 'y_move', int)
+PACKAGE = 'Weeder Routine'
+X_START = qualify_int(PACKAGE, 'x_start')
+Y_START = qualify_int(PACKAGE, 'y_start')
+X_MAX = qualify_int(PACKAGE, 'x_max')
+Y_MAX = qualify_int(PACKAGE, 'y_max')
+Z_MAX = qualify_int(PACKAGE, 'z_max')
+X_MOVE = qualify_int(PACKAGE, 'x_move')
+Y_MOVE = qualify_int(PACKAGE, 'y_move')
 
-#tool_water = qualify_sequence('Weeder Routine', 'tool_water', str) #optional
-#tool_weed = qualify_sequence('Weeder Routine', 'tool_weed', str)
+#tool_water = qualify_sequence(PACKAGE, 'tool_water', str) #optional
+#tool_weed = qualify_sequence(PACKAGE, 'tool_weed', str)
 
 points = app.get_points()
 plants = app.get_plants()
@@ -95,6 +95,6 @@ del_all_points(points)
 device.sync()
 weed_scan()
 device.sync()
-"""
+
 points = app.get_points()
 plants = app.get_plants()
