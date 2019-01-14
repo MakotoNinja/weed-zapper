@@ -18,7 +18,7 @@ def qualify_int(package, name):
 		input_errors.append('Must be integer for input: {}.'.format(name))
 	else:
 		return data
-"""
+
 def qualify_sequence(seq_name):
 	global input_errors
 	if len(''.join(seq_name.split())) > 0 and not seq_name.lower() == 'none':
@@ -29,7 +29,7 @@ def qualify_sequence(seq_name):
 		return sequence_id
 	elif len(''.join(seq_name.split())) <= 0:
 		input_errors.append('Enter "None" if no sequence is desired for {}'.format(seq_name))
-"""
+
 def del_all_points(points):
 	for point in points:
 		try:
@@ -77,7 +77,7 @@ Z_MAX = qualify_int(PACKAGE, 'z_max')
 X_MOVE = qualify_int(PACKAGE, 'x_move')
 Y_MOVE = qualify_int(PACKAGE, 'y_move')
 
-#tool_water = qualify_sequence(PACKAGE, 'tool_water', str) #optional
+tool_water = qualify_sequence(PACKAGE, 'tool_water', str) #optional
 #tool_weed = qualify_sequence(PACKAGE, 'tool_weed', str)
 
 points = app.get_points()
@@ -87,14 +87,11 @@ if len(input_errors):
 	for err in input_errors:
 		device.log(err, 'error', ['toast'])
 	sys.exit()
-
-
-
-
+"""
 del_all_points(points)
 device.sync()
 weed_scan()
 device.sync()
-
+"""
 points = app.get_points()
 plants = app.get_plants()
