@@ -53,6 +53,6 @@ def weed_scan():
 #del_all_points(points)
 #device.sync()
 
-#device.execute_script(label='my-farmware')
-del_all_points(points)
-weed_scan()
+device.execute_script(label = 'plant-detection')
+#del_all_points(points)
+#weed_scan()
