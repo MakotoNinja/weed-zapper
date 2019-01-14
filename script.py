@@ -70,9 +70,9 @@ def weed_scan():
 
 X_START = qualify_int('Weeder Routine', 'x_start')
 Y_START = qualify_int('Weeder Routine', 'y_start')
-"""
 X_MAX = qualify_int('Weeder Routine', 'x_max', int)
 Y_MAX = qualify_int('Weeder Routine', 'y_max', int)
+"""
 Z_MAX = qualify_int('Weeder Routine', 'z_max', int)
 X_MOVE = qualify_int('Weeder Routine', 'x_move', int)
 Y_MOVE = qualify_int('Weeder Routine', 'y_move', int)
