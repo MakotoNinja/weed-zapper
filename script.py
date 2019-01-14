@@ -78,7 +78,7 @@ Y_MOVE = qualify_int('Weeder Routine', 'y_move', int)
 
 #tool_water = qualify_sequence('Weeder Routine', 'tool_water', str) #optional
 #tool_weed = qualify_sequence('Weeder Routine', 'tool_weed', str)
-
+"""
 points = app.get_points()
 plants = app.get_plants()
 
@@ -89,7 +89,7 @@ if len(input_errors):
 
 
 
-"""
+
 del_all_points(points)
 device.sync()
 weed_scan()
