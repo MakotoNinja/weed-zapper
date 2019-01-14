@@ -25,7 +25,7 @@ def qualify_sequence(seq_name):
 			sequence_id = app.find_sequence_by_name(name = seq_name)
 		except:
 			input_errors.append('Failed to find sequence ID for {}'.format(seq_name))
-		return dequence_id
+		return sequence_id
 	elif len(''.join(seq_name.split())) <= 0:
 		input_errors.append('Enter "None" if no sequence is desired for {}'.format(seq_name))
 
