@@ -42,13 +42,19 @@ def weed_scan():
 	coord = Coordinate(X_START, Y_START)
 	offset = device.assemble_coordinate(0, 0, 0)
 	device.move_absolute(coord.get(), 100, offset)
-	while device.get_current_position('y') < Y_MAX - Y_MOVE:
-		while device.get_current_position('x') < X_MAX - X_MOVE:
+	while device.get_current_position('y') < Y_MAX:
+		while device.get_current_position('x') < X_MAX:
 			# scan for weeds
 			device.execute_script(label = 'plant-detection')
-			coord.set_pos('x', coord.get_pos('x') + X_MOVE)
+			if coord.get_pos('x') + X_MOVE > X_MAX:
+				coord.set_pos('x', X_MAX)
+			else:
+				coord.set_pos('x', coord.get_pos('x') + X_MOVE)
 			device.move_absolute(coord.get(), 100, offset)
-		coord.set_coordinate(X_START, coord.get_pos('y') + Y_MOVE)
+		if coord.get_pos('y') + Y_MOVE > Y_MAX:
+			coord.set_coordinate(X_START, Y_MAX)
+		else:
+			coord.set_coordinate(X_START, coord.get_pos('y') + Y_MOVE)
 		device.move_absolute(coord.get(), 100, offset)
 	device.log('Scan Complete.', 'info', ['toast'])
 
@@ -56,3 +62,9 @@ del_all_points(points)
 device.sync()
 weed_scan()
 device.sync()
+
+points = app.get_points()
+plants = app.get_plants()
+
+device.log(app.get_tool_slots())
+#sequence_id = app.find_sequence_by_name(name = )
