@@ -27,6 +27,7 @@ input_errors = []
 def qualify_input(package, name, data_type):
 	global input_errors
 	data = get_config_value(package, name, data_type)
+	device.log('Got data from {}: {}'.format(name, data), 'info', ['toast'])
 	if data_type == int:
 		try:
 			data = int(data)
