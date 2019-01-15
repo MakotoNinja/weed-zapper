@@ -68,6 +68,21 @@ def weed_scan():
 	device.sync()
 	device.log('Scan Complete.', 'info', ['toast'])
 
+def water_weeds():
+	global PIN_WATER
+	global points, get_water_tool_sequence_id
+	device.execute(get_water_tool_sequence_id)
+	coord = Coordinate(0, 0)
+	offset = device.assemble_coordinate(0,0,0)
+	for point in points:
+		if 'weed' in point['name'].lower():
+			coord.set_coordinate(point['x'], point['y'])
+			device.move_absolute(coord, 100, offset)
+			device.write_pin(PIN_WATER, 1, 0)
+			wait(2000)
+			device.write_pin(PIN_WATER, 0, 0)
+
+PIN_WATER = 8
 PKG = 'Weeder Routine'
 X_START = qualify_int(PKG, 'x_start')
 Y_START = qualify_int(PKG, 'y_start')
@@ -93,7 +108,7 @@ weed_scan()
 points = app.get_points()
 if len(points):
 	if get_water_tool_sequence_id:
-		device.execute(get_water_tool_sequence_id)
+		water_weeds()
 	else:
 		device.execute(get_weeder_tool_sequence_id)
 
