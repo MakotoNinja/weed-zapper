@@ -37,12 +37,10 @@ def del_all_points(points):
 			device.log("App Error - Point ID: {}".format(point['id']), 'error')
 
 def del_all_weeds(points):
-	num_weeds = 0
 	for point in points:
 		if 'weed' in point['name'].lower():
 			try:
 				app.delete('points', point['id'])
-				num_weeds += 1
 			except:
 				device.log("App Error - Point ID: {}".format(point['id']), 'error')
 	return num_weeds
@@ -79,7 +77,7 @@ def water_weeds():
 			coord.set_coordinate(point['x'], point['y'])
 			device.move_absolute(coord.get(), 100, offset)
 			device.write_pin(PIN_WATER, 1, 0)
-			wait(2000)
+			device.wait(2000)
 			device.write_pin(PIN_WATER, 0, 0)
 
 PIN_WATER = 8
