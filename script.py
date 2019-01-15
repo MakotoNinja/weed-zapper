@@ -76,8 +76,8 @@ Z_MAX = qualify_int(PACKAGE, 'z_max')
 X_MOVE = qualify_int(PACKAGE, 'x_move')
 Y_MOVE = qualify_int(PACKAGE, 'y_move')
 
-tool_water = qualify_sequence(get_config_value(PKG, 'tool_water', str)) #optional
-tool_weed = qualify_sequence(get_config_value(PKG, 'tool_weed', str))
+get_water_tool_sequence_id = get_config_value(PKG, 'tool_water', str) #optional
+#get_tool_weed_id = qualify_sequence(get_config_value(PKG, 'tool_weed', str))
 
 points = app.get_points()
 plants = app.get_plants()
@@ -92,5 +92,3 @@ device.sync()
 weed_scan()
 device.sync()
 """
-points = app.get_points()
-plants = app.get_plants()
