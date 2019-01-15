@@ -27,8 +27,8 @@ def qualify_sequence(seq_name):
 		except:
 			input_errors.append('Failed to find sequence ID for {}'.format(seq_name))
 		return sequence_id
-	#elif len(''.join(seq_name.split())) <= 0:
-		#input_errors.append('Enter "None" if no sequence is desired for {}'.format(seq_name))
+	elif len(''.join(seq_name.split())) <= 0:
+		input_errors.append('Enter "None" if no sequence is desired for {}'.format(seq_name))
 
 def del_all_points(points):
 	for point in points:
