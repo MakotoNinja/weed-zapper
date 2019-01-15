@@ -69,9 +69,7 @@ def weed_scan():
 	device.log('Points: {}'.format(json.dumps(points)))
 
 def water_weeds():
-	#global PIN_WATER
-	#global points, get_water_tool_sequence_id
-	device.log('PIN_WATER: {}, Sequence ID: {}'.format(PIN_WATER, get_water_tool_sequence_id))
+	#device.log('PIN_WATER: {}, Sequence ID: {}'.format(PIN_WATER, get_water_tool_sequence_id))
 	device.execute(get_water_tool_sequence_id)
 	coord = Coordinate(0, 0, device.get_current_position('z'))
 	offset = device.assemble_coordinate(0, 0, 0)
@@ -83,7 +81,6 @@ def water_weeds():
 		device.write_pin(PIN_WATER, 0, 0)
 
 def get_weed_points():
-	# need global?
 	wp = []
 	for point in points:
 		if 'weed' in point['name'].lower():
