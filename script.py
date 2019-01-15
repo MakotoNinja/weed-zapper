@@ -24,11 +24,10 @@ def qualify_sequence(seq_name):
 	if len(''.join(seq_name.split())) > 0 and not seq_name.lower() == 'none':
 		try:
 			sequence_id = app.find_sequence_by_name(name = seq_name)
+			return sequence_id
 		except:
 			input_errors.append('Failed to find sequence ID for {}'.format(seq_name))
-		return sequence_id
-	elif len(''.join(seq_name.split())) <= 0:
-		input_errors.append('Enter "None" if no sequence is desired for {}'.format(seq_name))
+	return None
 
 def del_all_points(points):
 	for point in points:
@@ -68,7 +67,7 @@ def weed_scan():
 		device.move_absolute(coord.get(), 100, offset)
 	device.log('Scan Complete.', 'info', ['toast'])
 
-PACKAGE = 'Weeder Routine'
+PKG = 'Weeder Routine'
 X_START = qualify_int(PACKAGE, 'x_start')
 Y_START = qualify_int(PACKAGE, 'y_start')
 X_MAX = qualify_int(PACKAGE, 'x_max')
@@ -77,8 +76,8 @@ Z_MAX = qualify_int(PACKAGE, 'z_max')
 X_MOVE = qualify_int(PACKAGE, 'x_move')
 Y_MOVE = qualify_int(PACKAGE, 'y_move')
 
-tool_water = qualify_sequence(PACKAGE, 'tool_water') #optional
-tool_weed = qualify_sequence(PACKAGE, 'tool_weed')
+tool_water = qualify_sequence(get_config_value(PKG, 'tool_water', str)) #optional
+tool_weed = qualify_sequence(get_config_value(PKG, 'tool_weed', str))
 
 points = app.get_points()
 plants = app.get_plants()
