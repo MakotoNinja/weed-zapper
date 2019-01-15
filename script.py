@@ -66,6 +66,7 @@ def weed_scan():
 		device.move_absolute(coord.get(), 100, offset)
 	device.sync()
 	device.log('Scan Complete.', 'info', ['toast'])
+	device.log('Points: {}'.format(json.dumps(points)))
 
 def water_weeds():
 	global PIN_WATER
