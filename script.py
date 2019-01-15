@@ -73,11 +73,11 @@ def water_weeds():
 	global points, get_water_tool_sequence_id
 	device.execute(get_water_tool_sequence_id)
 	coord = Coordinate(0, 0)
-	offset = device.assemble_coordinate(0,0,0)
+	offset = device.assemble_coordinate(0, 0, 0)
 	for point in points:
 		if 'weed' in point['name'].lower():
 			coord.set_coordinate(point['x'], point['y'])
-			device.move_absolute(coord, 100, offset)
+			device.move_absolute(coord.get(), 100, offset)
 			device.write_pin(PIN_WATER, 1, 0)
 			wait(2000)
 			device.write_pin(PIN_WATER, 0, 0)
