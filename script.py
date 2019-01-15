@@ -21,7 +21,7 @@ def qualify_int(package, name):
 
 def qualify_sequence(seq_name):
 	global input_errors
-	if len(''.join(seq_name.split())) > 0 and not seq_name.lower() == 'none':
+	if len(''.join(seq_name.split())) > 0 and seq_name.lower() != 'none':
 		try:
 			sequence_id = app.find_sequence_by_name(name = seq_name)
 			return sequence_id
@@ -65,6 +65,7 @@ def weed_scan():
 		else:
 			coord.set_coordinate(X_START, coord.get_pos('y') + Y_MOVE)
 		device.move_absolute(coord.get(), 100, offset)
+	device.sync()
 	device.log('Scan Complete.', 'info', ['toast'])
 
 PKG = 'Weeder Routine'
@@ -76,16 +77,26 @@ Z_MAX = qualify_int(PKG, 'z_max')
 X_MOVE = qualify_int(PKG, 'x_move')
 Y_MOVE = qualify_int(PKG, 'y_move')
 
-get_water_tool_sequence_id = get_config_value(PKG, 'tool_water', str) #optional
-#get_tool_weed_id = qualify_sequence(get_config_value(PKG, 'tool_weed', str))
-
-points = app.get_points()
-plants = app.get_plants()
+get_water_tool_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_water', str)) #optional
+get_weeder_tool_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_weed', str))
 
 if len(input_errors):
 	for err in input_errors:
 		device.log(err, 'error', ['toast'])
 	sys.exit()
+
+points = app.get_points()
+del_all_points(points)
+device.sync()
+weed_scan()
+
+points = app.get_points()
+if len(points):
+	if get_water_tool_sequence_id:
+		device.execute(get_water_tool_sequence_id)
+	else:
+		device.execute(get_weeder_tool_sequence_id)
+
 """
 del_all_points(points)
 device.sync()
