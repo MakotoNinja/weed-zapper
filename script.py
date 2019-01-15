@@ -68,15 +68,15 @@ def weed_scan():
 	device.log('Scan Complete.', 'info', ['toast'])
 
 PKG = 'Weeder Routine'
-X_START = qualify_int(PACKAGE, 'x_start')
-Y_START = qualify_int(PACKAGE, 'y_start')
-X_MAX = qualify_int(PACKAGE, 'x_max')
-Y_MAX = qualify_int(PACKAGE, 'y_max')
-Z_MAX = qualify_int(PACKAGE, 'z_max')
-X_MOVE = qualify_int(PACKAGE, 'x_move')
-Y_MOVE = qualify_int(PACKAGE, 'y_move')
+X_START = qualify_int(PKG, 'x_start')
+Y_START = qualify_int(PKG, 'y_start')
+X_MAX = qualify_int(PKG, 'x_max')
+Y_MAX = qualify_int(PKG, 'y_max')
+Z_MAX = qualify_int(PKG, 'z_max')
+X_MOVE = qualify_int(PKG, 'x_move')
+Y_MOVE = qualify_int(PKG, 'y_move')
 
-#get_water_tool_sequence_id = get_config_value(PKG, 'tool_water', str) #optional
+get_water_tool_sequence_id = get_config_value(PKG, 'tool_water', str) #optional
 #get_tool_weed_id = qualify_sequence(get_config_value(PKG, 'tool_weed', str))
 
 points = app.get_points()
