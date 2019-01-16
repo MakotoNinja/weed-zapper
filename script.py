@@ -45,24 +45,27 @@ def del_all_weeds(points):
 	return num_weeds
 
 def weed_scan():
-	coord = Coordinate(X_START, Y_START)
-	offset = device.assemble_coordinate(0, 0, 0)
-	device.move_absolute(coord.get(), 100, offset)
-	while device.get_current_position('y') < Y_MAX:
-		device.execute_script(label = 'plant-detection')
+	""" scans length of X axis """
+	def scan_line():
 		while device.get_current_position('x') < X_MAX:
 			if coord.get_pos('x') + X_MOVE > X_MAX:
 				coord.set_pos('x', X_MAX)
 			else:
 				coord.set_pos('x', coord.get_pos('x') + X_MOVE)
-			device.move_absolute(coord.get(), 100, offset)
-			# scan for weeds
+			device.move_absolute(coord.get(), 100, coord.get_offset())
 			device.execute_script(label = 'plant-detection')
+	""" start scan """
+	coord = Coordinate(X_START, Y_START)
+	device.move_absolute(coord.get(), 100, coord.get_offset())
+	device.execute_script(label = 'plant-detection')
+	scan_line()
+	while device.get_current_position('y') < Y_MAX:
 		if coord.get_pos('y') + Y_MOVE > Y_MAX:
 			coord.set_coordinate(X_START, Y_MAX)
 		else:
 			coord.set_coordinate(X_START, coord.get_pos('y') + Y_MOVE)
-		device.move_absolute(coord.get(), 100, offset)
+		device.move_absolute(coord.get(), 100, coord.get_offset())
+		scan_line()
 	device.sync()
 	device.log('Scan Complete.', 'info', ['toast'])
 
