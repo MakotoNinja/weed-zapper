@@ -64,7 +64,6 @@ def weed_scan():
 		device.move_absolute(coord.get(), 100, offset)
 	device.sync()
 	device.log('Scan Complete.', 'info', ['toast'])
-	device.log('Points: {}'.format(json.dumps(points)))
 
 def water_weeds():
 	device.execute(water_tool_retrieve_sequence_id)
@@ -109,12 +108,11 @@ if len(input_errors):
 	for err in input_errors:
 		device.log(err, 'error', ['toast'])
 	sys.exit()
-
+device.write_pin(PIN_LIGHTS, 1, 0)
 points = app.get_points()
 del_all_points(points)
 device.sync()
 weed_scan()
-
 points = app.get_points()
 weed_points = get_weed_points()
 device.log('Weed Points: {}'.format(json.dumps(weed_points)))
@@ -123,6 +121,7 @@ if len(weed_points):
 		water_weeds()
 	smush_weeds()
 device.home('all')
+device.write_pin(PIN_LIGHTS, 0, 0)
 """
 del_all_points(points)
 device.sync()
