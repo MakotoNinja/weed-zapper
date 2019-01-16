@@ -77,7 +77,6 @@ def water_weeds():
 		device.wait(2000)
 		device.write_pin(PIN_WATER, 0, 0)
 	device.execute(water_tool_return_sequence_id)
-	device.home('all')
 
 def smush_weeds():
 	device.execute(weeder_tool_retrieve_sequence_id)
@@ -116,13 +115,14 @@ del_all_points(points)
 device.sync()
 weed_scan()
 
+points = app.get_points()
 weed_points = get_weed_points()
 device.log('Weed Points: {}'.format(json.dumps(weed_points)))
 if len(weed_points):
 	if water_tool_retrieve_sequence_id:
 		water_weeds()
 	smush_weeds()
-
+device.home('all')
 """
 del_all_points(points)
 device.sync()
