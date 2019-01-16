@@ -3,6 +3,7 @@
 <p>The weeder routine should:</p>
 <ul>
 	<li>Delete all point data.</li>
-	<li>Scan entire bed.</li>
-	<li>Stomp out any weeds that were detected.</li>
+	<li>Scan the area specified by the input parameters for weeds.</li>
+	<li>Optional watering of detected weeds (helps loosen up soil).</li>
+	<li>Stomp out any detected weeds.</li>
 </ul>

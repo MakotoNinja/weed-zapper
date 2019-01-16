@@ -5,6 +5,7 @@
 '''
 
 import os, sys, json
+from random import randint
 from farmware_tools import device, app, get_config_value
 from Coordinate import Coordinate
 
@@ -47,9 +48,9 @@ def weed_scan():
 	coord = Coordinate(X_START, Y_START)
 	offset = device.assemble_coordinate(0, 0, 0)
 	device.move_absolute(coord.get(), 100, offset)
-	while device.get_current_position('y') < Y_MAX:
+	while device.get_current_position('y') <= Y_MAX:
 		device.execute_script(label = 'plant-detection')
-		while device.get_current_position('x') < X_MAX:
+		while device.get_current_position('x') <= X_MAX:
 			if coord.get_pos('x') + X_MOVE > X_MAX:
 				coord.set_pos('x', X_MAX)
 			else:
@@ -79,6 +80,13 @@ def water_weeds():
 
 def smush_weeds():
 	device.execute(weeder_tool_retrieve_sequence_id)
+	coord = Coordinate(0, 0, device.get_current_position('z'))
+	for weed_point in weed_points:
+		device.move_absolute(coord.get(), 100, coord.get_offset())
+		for i in range(5):
+			coord.set_offset_pos('z', Z_MAX)
+			device.move_absolute(coord.get(), 100, coord.get_offset())
+
 	device.execute(weeder_tool_return_sequence_id)
 
 def get_weed_points():
@@ -116,6 +124,7 @@ weed_scan()
 points = app.get_points()
 weed_points = get_weed_points()
 device.log('Weed Points: {}'.format(json.dumps(weed_points)))
+device.log('Scan found {} weeds.'.format(weed_points))
 if len(weed_points):
 	if water_tool_retrieve_sequence_id:
 		water_weeds()
