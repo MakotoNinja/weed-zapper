@@ -13,13 +13,16 @@ class Coordinate:
 	def get_pos(self, axis):
 		return self.coordinate['args'][axis]
 
+	def set_coordinate(self, x=None, y=None, z=None):
+		if x:
+			self.coordinate['args']['x'] = x
+		if y:
+			self.coordinate['args']['y'] = y
+		if z:
+			self.coordinate['args']['z'] = z
+
 	def get_coordinate(self):
 		return self.coordinate['args']
-
-	def set_coordinate(self, x=0, y=0, z=0):
-		self.coordinate['args']['x'] = x
-		self.coordinate['args']['y'] = y
-		self.coordinate['args']['z'] = z
 
 	def get(self):
 		return self.coordinate
@@ -33,10 +36,13 @@ class Coordinate:
 	def get_offset(self):
 		return self.offset
 
-	def set_offset(self, x, y, z):
-		self.offset['args']['x'] = x
-		self.offset['args']['y'] = y
-		self.offset['args']['z'] = z
+	def set_offset(self, x=None, y=None, z=None):
+		if x:
+			self.offset['args']['x'] = x
+		if y:
+			self.offset['args']['y'] = y
+		if z:
+			self.offset['args']['z'] = z
 
 	def print_me(self):
 		print(self.get_coordinate())
