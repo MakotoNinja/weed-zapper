@@ -3,7 +3,7 @@
 	"language": "python",
 	"author": "MakotoNinja",
 	"description": "A weeding routine for Farmbot.",
-	"version": "1.0.9",
+	"version": "1.0.1",
 	"min_os_version_major": 6,
 	"url": "https://raw.githubusercontent.com/MakotoNinja/weeder-routine/master/manifest.json",
 	"zip": "https://github.com/MakotoNinja/weeder-routine/archive/master.zip",
@@ -17,7 +17,9 @@
 		{"name": "z_max", "label": "Max Z (The Furthest the robot can travel on the Z axis)", "value": 0 },
 		{"name": "x_move", "label": "X Move Increment", "value": 300 },
 		{"name": "y_move", "label": "Y Move Increment", "value": 250 },
-		{"name": "tool_water", "label": "Water Tool Retrieval Sequence (Optional, if used, will water weed area to losen soil)", "value": "None" },
-		{"name": "tool_weed", "label": "Weed Tool Retrieval Sequence", "value": "" }
+		{"name": "tool_water_retrieve", "label": "Water Tool Retrieval Sequence (Optional, if not None, will water weed area to losen soil)", "value": "None" },
+		{"name": "tool_water_return", "label": "Water Tool Return Sequence", "value": "None" },
+		{"name": "tool_weed_retrieve", "label": "Weed Tool Retrieval Sequence", "value": "" },
+		{"name": "tool_weed_return", "label": "Weed Tool Return Sequence", "value": "" }
 	]
 }

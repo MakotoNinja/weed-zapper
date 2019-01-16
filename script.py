@@ -10,7 +10,6 @@ from Coordinate import Coordinate
 
 input_errors = []
 def qualify_int(package, name):
-	global input_errors
 	data = get_config_value(package, name, int)
 	try:
 		data = int(data)
@@ -20,7 +19,6 @@ def qualify_int(package, name):
 		return data
 
 def qualify_sequence(seq_name):
-	global input_errors
 	if len(''.join(seq_name.split())) > 0 and seq_name.lower() != 'none':
 		try:
 			sequence_id = app.find_sequence_by_name(name = seq_name)
@@ -69,8 +67,7 @@ def weed_scan():
 	device.log('Points: {}'.format(json.dumps(points)))
 
 def water_weeds():
-	#device.log('PIN_WATER: {}, Sequence ID: {}'.format(PIN_WATER, get_water_tool_sequence_id))
-	device.execute(get_water_tool_sequence_id)
+	device.execute(water_tool_retrieve_sequence_id)
 	coord = Coordinate(0, 0, device.get_current_position('z'))
 	offset = device.assemble_coordinate(0, 0, 0)
 	for weed_point in weed_points:
@@ -79,6 +76,10 @@ def water_weeds():
 		device.write_pin(PIN_WATER, 1, 0)
 		device.wait(2000)
 		device.write_pin(PIN_WATER, 0, 0)
+	device.execute(water_tool_return_sequence_id)
+
+def smush_weeds():
+	pass
 
 def get_weed_points():
 	wp = []
@@ -87,6 +88,7 @@ def get_weed_points():
 			wp.append(point)
 	return wp
 
+PIN_LIGHTS = 7
 PIN_WATER = 8
 PKG = 'Weeder Routine'
 X_START = qualify_int(PKG, 'x_start')
@@ -97,8 +99,10 @@ Z_MAX = qualify_int(PKG, 'z_max')
 X_MOVE = qualify_int(PKG, 'x_move')
 Y_MOVE = qualify_int(PKG, 'y_move')
 
-get_water_tool_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_water', str)) #optional
-get_weeder_tool_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_weed', str))
+water_tool_retrieve_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_water_retrieve', str)) #optional
+water_tool_return_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_water_return', str)) #optional
+weeder_tool_retrieve_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_weed_retrieve', str))
+weeder_tool_return_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_weed_return', str))
 
 if len(input_errors):
 	for err in input_errors:
@@ -112,10 +116,9 @@ weed_scan()
 
 weed_points = get_weed_points()
 if len(weed_points):
-	if get_water_tool_sequence_id:
+	if water_tool_retrieve_sequence_id:
 		water_weeds()
-	else:
-		device.execute(get_weeder_tool_sequence_id)
+	device.execute(weeder_tool_retrieve_sequence_id)
 
 """
 del_all_points(points)
