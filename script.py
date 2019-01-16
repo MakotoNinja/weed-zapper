@@ -65,6 +65,7 @@ def weed_scan():
 		else:
 			coord.set_coordinate(X_START, coord.get_pos('y') + Y_MOVE)
 		device.move_absolute(coord.get(), 100, coord.get_offset())
+		device.execute_script(label = 'plant-detection')
 		scan_line()
 	device.sync()
 	device.log('Scan Complete.', 'info', ['toast'])
