@@ -48,9 +48,9 @@ def weed_scan():
 	coord = Coordinate(X_START, Y_START)
 	offset = device.assemble_coordinate(0, 0, 0)
 	device.move_absolute(coord.get(), 100, offset)
-	while device.get_current_position('y') <= Y_MAX:
+	while device.get_current_position('y') < Y_MAX:
 		device.execute_script(label = 'plant-detection')
-		while device.get_current_position('x') <= X_MAX:
+		while device.get_current_position('x') < X_MAX:
 			if coord.get_pos('x') + X_MOVE > X_MAX:
 				coord.set_pos('x', X_MAX)
 			else:
