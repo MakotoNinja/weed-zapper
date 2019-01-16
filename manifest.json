@@ -3,7 +3,7 @@
 	"language": "python",
 	"author": "MakotoNinja",
 	"description": "A weeding routine for Farmbot.",
-	"version": "1.0.9",
+	"version": "1.0.1",
 	"min_os_version_major": 6,
 	"url": "https://raw.githubusercontent.com/MakotoNinja/weeder-routine/master/manifest.json",
 	"zip": "https://github.com/MakotoNinja/weeder-routine/archive/master.zip",
@@ -21,6 +21,8 @@
 		{"name": "tool_water_return", "label": "Water Tool Return Sequence", "value": "None" },
 		{"name": "tool_weed_retrieve", "label": "Weed Tool Retrieval Sequence", "value": "" },
 		{"name": "tool_weed_return", "label": "Weed Tool Return Sequence", "value": "" },
-		{"name": "num_stabs", "label": "Number of stabs at each weed. Will apply a small offset on each stab.", "value": 5}
+		{"name": "num_stabs", "label": "Number of stabs at each weed. Will apply a small offset on each stab.", "value": 5},
+		{"name": "rab_min", "label": "X/Y Random Movement Minimum (MM)", "value": 5 },
+		{"name": "ran_max", "label": "X/Y Random Movement Maximum (MM)", "value": 10 }
 	]
 }

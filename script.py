@@ -88,10 +88,14 @@ def smush_weeds():
 		coord.set_coordinate(weed_point['x'], weed_point['y'])
 		device.move_absolute(coord.get(), 100, coord.get_offset())
 		z_height = device.get_current_position('z')
-		for i in range(5):
-			coord.set_offset_pos('z', Z_MAX)
+		for i in range(NUM_STABS):
+			x = randint(RAN_MIN, RAN_MAX)
+			y = randint(RAN_MIN, RAN_MAX)
+			x *= 1 if randint(0, 1) else -1
+			y *= 1 if randint(0, 1) else -1
+			coord.set_offset(x, y)
 			device.move_absolute(coord.get(), 100, coord.get_offset())
-			coord.set_offset_pos('z', z_height)
+			coord.set_offset_pos('z', Z_MAX)
 			device.move_absolute(coord.get(), 100, coord.get_offset())
 
 	device.execute(weeder_tool_return_sequence_id)
@@ -113,6 +117,9 @@ Y_MAX = qualify_int(PKG, 'y_max')
 Z_MAX = qualify_int(PKG, 'z_max')
 X_MOVE = qualify_int(PKG, 'x_move')
 Y_MOVE = qualify_int(PKG, 'y_move')
+NUM_STABS = qualify_int(PKG, 'num_stabs')
+RAN_MIN = qualify_int(PKG, 'ran_min')
+RAN_MAX = qualify_int(PKG, 'ran_max')
 
 water_tool_retrieve_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_water_retrieve', str)) #optional
 water_tool_return_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_water_return', str)) #optional
