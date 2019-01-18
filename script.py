@@ -88,7 +88,7 @@ def smush_weeds():
 		coord = Coordinate(device.get_current_position('x'), device.get_current_position('y'), Z_TRANSLATE)
 		device.log('coordinate created: {}, moving to translate position.'.format(coord.get_coordinate()))
 		device.move_absolute(coord.get(), 100, coord.get_offset())
-		devicce.log('moved to translate position.')
+		device.log('moved to translate position.')
 		coord.set_coordinate(weed_point['x'], weed_point['y'])
 		device.move_absolute(coord.get(), 100, coord.get_offset())
 		for i in range(NUM_STABS):
