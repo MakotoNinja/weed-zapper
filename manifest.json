@@ -15,7 +15,7 @@
 		{"name": "x_max", "label": "Max X (The Furthest the robot can travel on the X axis)", "value": 0 },
 		{"name": "y_max", "label": "Max Y (The Furthest the robot can travel on the Y axis)", "value": 0 },
 		{"name": "z_translate", "label": "Z axis height while traveling from point to point", "value": 0 },
-		{"name": "y_move", "label": "Y Move Increment (Y axis movement when scanning)", "value": 250 }
+		{"name": "y_move", "label": "Y Move Increment (Y axis movement when scanning)", "value": 250 },
 		{"name": "x_move", "label": "X Move Increment (X axis movement when scanning)", "value": 300 },
 		{"name": "y_move", "label": "Y Move Increment (Y axis movement when scanning)", "value": 250 },
 		{"name": "tool_water_retrieve", "label": "Water Tool Retrieval Sequence (Optional, if not None, will water weed area to losen soil)", "value": "None" },
