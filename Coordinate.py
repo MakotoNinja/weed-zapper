@@ -27,14 +27,14 @@ class Coordinate:
 	def get(self):
 		return self.coordinate
 
-	def set_offset_pos(self, axis, pos):
-		self.offset['args'][axis] = pos
-
 	def get_offset_pos(self, axis):
 		return self.offset['args'][axis]
 
+	def set_offset_pos(self, axis, pos):
+		self.offset['args'][axis] = pos
+
 	def get_offset(self):
-		return self.offset
+		return self.offset['args']
 
 	def set_offset(self, x=None, y=None, z=None):
 		if x:
