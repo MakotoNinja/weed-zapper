@@ -82,10 +82,14 @@ def water_weeds():
 	device.execute(water_tool_return_sequence_id)
 
 def smush_weeds():
+	coord = Coordinate()
+	def move_height():
+		coord.set_coordinate(device.get_current_position('x'), device.get_current_position('y'), Z_TRANSLATE)
+		device.move_absolute(coord.get(), 100, coord.get_offset())
+
 	device.execute(weeder_tool_retrieve_sequence_id)
 	for weed_point in weed_points:
-		coord = Coordinate(device.get_current_position('x'), device.get_current_position('y'), Z_TRANSLATE)
-		device.move_absolute(coord.get(), 100, coord.get_offset())
+		move_height()
 		coord.set_coordinate(weed_point['x'], weed_point['y'])
 		device.move_absolute(coord.get(), 100, coord.get_offset())
 		for i in range(NUM_STABS):
@@ -100,7 +104,7 @@ def smush_weeds():
 			coord.set_offset(0, 0, 0)
 			coord.set_pos('z', device.get_current_position('z') + Z_RETRACT)
 			device.move_absolute(coord.get(), 100, coord.get_offset())
-
+	move_height()
 	device.execute(weeder_tool_return_sequence_id)
 
 def get_weed_points():
