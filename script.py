@@ -87,7 +87,7 @@ def smush_weeds():
 	for weed_point in weed_points:
 		coord.set_coordinate(weed_point['x'], weed_point['y'])
 		device.move_absolute(coord.get(), 100, coord.get_offset())
-		z_height = device.get_current_position('z')
+		z_height = device.get_current_position('z') # record curreent z pos
 		for i in range(NUM_STABS):
 			x = randint(RAN_MIN, RAN_MAX)
 			y = randint(RAN_MIN, RAN_MAX)
@@ -95,7 +95,10 @@ def smush_weeds():
 			y *= 1 if randint(0, 1) else -1
 			coord.set_offset(x, y)
 			device.move_absolute(coord.get(), 100, coord.get_offset())
-			coord.set_offset_pos('z', Z_MAX)
+			coord.set_pos('z', Z_MAX)
+			device.move_absolute(coord.get(), 100, coord.get_offset())
+			coord.set_offset(0, 0, 0)
+			coord.set_pos('z', z_height)
 			device.move_absolute(coord.get(), 100, coord.get_offset())
 
 	device.execute(weeder_tool_return_sequence_id)
