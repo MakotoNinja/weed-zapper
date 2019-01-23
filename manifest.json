@@ -3,7 +3,7 @@
 	"language": "python",
 	"author": "MakotoNinja",
 	"description": "A weeding routine for Farmbot.",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"min_os_version_major": 6,
 	"url": "https://raw.githubusercontent.com/MakotoNinja/weeder-routine/master/manifest.json",
 	"zip": "https://github.com/MakotoNinja/weeder-routine/archive/master.zip",
@@ -26,6 +26,6 @@
 		{"name": "ran_min", "label": "X/Y Random Movement Minimum (MM)", "value": 5 },
 		{"name": "ran_max", "label": "X/Y Random Movement Maximum (MM)", "value": 10 },
 		{"name": "z_retract", "label": "Distance to retract UTM between stabs", "value": 100 },
-		{"name": "weed_type", "label": "Weed Type (WEED, SAFE-REMOVE, BOTH)", "value": "weed" }
+		{"name": "weed_type", "label": "Weed Type (WEED, SAFE-REMOVE, BOTH)", "value": "WEED" }
 	]
 }
