@@ -71,15 +71,20 @@ def weed_scan():
 	device.log('Scan Complete.', 'info', ['toast'])
 
 def water_weeds():
+	device.log('Detected {} weeds'.format(len(weed_points)))
+	"""
 	device.execute(water_tool_retrieve_sequence_id)
-	coord = Coordinate(0, 0, device.get_current_position('z'))
+	coord = Coordinate(device.get_current_position('x'), device.get_current_position('y'), Z_TRANSLATE)
+	coord.move_abs()
 	for weed_point in weed_points:
 		coord.set_coordinate(weed_point['x'], weed_point['y'])
-		device.move_absolute(coord.get(), 100, coord.get_offset())
+		coord.move_abs()
+		#device.move_absolute(coord.get(), 100, coord.get_offset())
 		device.write_pin(PIN_WATER, 1, 0)
-		device.wait(2000)
+		device.wait(1000)
 		device.write_pin(PIN_WATER, 0, 0)
 	device.execute(water_tool_return_sequence_id)
+	"""
 
 def smush_weeds():
 	coord = Coordinate()
