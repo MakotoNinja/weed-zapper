@@ -111,7 +111,7 @@ def smush_weeds():
 def get_weed_points():
 	wp = []
 	for point in points:
-		if 'weed' in point['name'].lower():
+		if WEED_TYPE in point['name'].lower():
 			wp.append(point)
 	return wp
 
@@ -130,12 +130,12 @@ NUM_STABS = qualify_int(PKG, 'num_stabs')
 RAN_MIN = qualify_int(PKG, 'ran_min')
 RAN_MAX = qualify_int(PKG, 'ran_max')
 Z_RETRACT = qualify_int(PKG, 'z_retract')
-'''
-WEED_TYPE = get_config_value('weed_type').lower()
+
+WEED_TYPE = get_config_value('weed_type', str).lower()
 if WEED_TYPE not in ['weed', 'safe-remove', 'both']:
 	device.log('Weed type invalid. Must be WEED, SAFE-REMOVE or BOTH', 'error')
 	sys.exit()
-'''
+
 water_tool_retrieve_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_water_retrieve', str)) #optional
 water_tool_return_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_water_return', str)) #optional
 weeder_tool_retrieve_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_weed_retrieve', str))
