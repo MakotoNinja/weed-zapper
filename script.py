@@ -59,7 +59,7 @@ def weed_scan():
 			device.execute_script(label = 'plant-detection')
 	""" start scan """
 	coord = Coordinate(X_START, Y_START)
-	device.move_absolute(coord.get(), 100, coord.get_offset())
+	coord.move_abs()
 	device.execute_script(label = 'plant-detection')
 	scan_line()
 	while device.get_current_position('y') < Y_MAX:
@@ -155,6 +155,7 @@ points = app.get_points()
 device.log('App.getpoints: {}'.format(points))
 del_all_points(points)
 device.sync()
+device.log('Device Synced!')
 weed_scan()
 points = app.get_points()
 weed_points = get_weed_points()
