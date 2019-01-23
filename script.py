@@ -152,7 +152,7 @@ else:
 
 device.write_pin(PIN_LIGHTS, 1, 0)
 points = app.get_points()
-device.log('About to delete all points')
+device.log('App.getpoints: {}'.format(points))
 del_all_points(points)
 device.sync()
 weed_scan()
