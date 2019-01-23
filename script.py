@@ -29,9 +29,11 @@ def qualify_sequence(seq_name):
 	return None
 
 def del_all_points(points):
+	device.log('Delete all points function...')
 	for point in points:
 		try:
 			app.delete('points', point['id'])
+			device.log('Point deleted.')
 		except:
 			device.log("App Error - Point ID: {}".format(point['id']), 'error')
 
