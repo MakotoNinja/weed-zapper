@@ -11,7 +11,7 @@ from Coordinate import Coordinate
 
 input_errors = []
 def qualify_int(name):
-	data = get_config_value(package, name, int)
+	data = get_config_value(PKG, name, int)
 	try:
 		data = int(data)
 	except:
