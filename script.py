@@ -48,10 +48,10 @@ def weed_scan():
 	""" scans length of X axis """
 	def scan_line():
 		while device.get_current_position('x') < X_MAX:
-			if coord.get_pos('x') + X_MOVE > X_MAX:
-				coord.set_pos('x', X_MAX)
+			if coord.get_axis_position('x') + X_MOVE > X_MAX:
+				coord.set_axis_position('x', X_MAX)
 			else:
-				coord.set_pos('x', coord.get_pos('x') + X_MOVE)
+				coord.set_axis_position('x', coord.get_pos('x') + X_MOVE)
 			coord.move_abs()
 			device.execute_script(label = 'plant-detection')
 	""" start scan """
@@ -60,7 +60,7 @@ def weed_scan():
 	device.execute_script(label = 'plant-detection')
 	scan_line()
 	while device.get_current_position('y') < Y_MAX:
-		if coord.get_pos('y') + Y_MOVE > Y_MAX:
+		if coord.get_axis_position('y') + Y_MOVE > Y_MAX:
 			coord.set_coordinate(X_START, Y_MAX)
 		else:
 			coord.set_coordinate(X_START, coord.get_pos('y') + Y_MOVE)
@@ -100,10 +100,10 @@ def smush_weeds():
 			y *= 1 if randint(0, 1) else -1
 			coord.set_offset(x, y)
 			coord.move_abs()
-			coord.set_pos('z', Z_MAX)
+			coord.set_axis_position('z', Z_MAX)
 			coord.move_abs()
 			coord.set_offset(0, 0, 0)
-			coord.set_pos('z', device.get_current_position('z') + Z_RETRACT)
+			coord.set_axis_position('z', device.get_current_position('z') + Z_RETRACT)
 			coord.move_abs()
 	move_height()
 	device.execute(weeder_tool_return_sequence_id)
@@ -146,12 +146,13 @@ if len(input_errors):
 		device.log(err, 'error', ['toast'])
 	sys.exit()
 else:
-	device.log('No errors detected')
+	device.log('No config errors detected')
 
 device.write_pin(PIN_LIGHTS, 1, 0)
 
 points = app.get_points()
 if len(points):
+	device.log('Deleting existing points...')
 	del_all_points()
 	device.sync()
 
