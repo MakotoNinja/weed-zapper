@@ -109,9 +109,12 @@ def smush_weeds():
 	device.execute(weeder_tool_return_sequence_id)
 
 def get_weed_points():
+	device.log('Getting weed points of type: {}'.format(WEED_TYPE))
 	wp = []
+	types = ['weed', 'safe-remove weed'] if WEED_TYPE == 'both' else : [WEED_TYPE]
+	device.log('Weed Type(s): {}'.format(json.dumps(types)))
 	for point in points:
-		if WEED_TYPE in point['name'].lower():
+		if point['name'].lower() in types:
 			wp.append(point)
 	return wp
 
