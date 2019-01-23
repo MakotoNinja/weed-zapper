@@ -144,6 +144,7 @@ if len(input_errors):
 	for err in input_errors:
 		device.log(err, 'error', ['toast'])
 	sys.exit()
+
 device.write_pin(PIN_LIGHTS, 1, 0)
 points = app.get_points()
 del_all_points(points)
