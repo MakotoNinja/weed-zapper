@@ -10,7 +10,7 @@ from farmware_tools import device, app, get_config_value
 from Coordinate import Coordinate
 
 input_errors = []
-def qualify_int(package, name):
+def qualify_int(name):
 	data = get_config_value(package, name, int)
 	try:
 		data = int(data)
@@ -118,20 +118,20 @@ def get_weed_points():
 PIN_LIGHTS = 7
 PIN_WATER = 8
 PKG = 'Weeder Routine'
-X_START = qualify_int(PKG, 'x_start')
-Y_START = qualify_int(PKG, 'y_start')
-X_MAX = qualify_int(PKG, 'x_max')
-Y_MAX = qualify_int(PKG, 'y_max')
-Z_MAX = qualify_int(PKG, 'z_max')
-Z_TRANSLATE = qualify_int(PKG, 'z_translate')
-X_MOVE = qualify_int(PKG, 'x_move')
-Y_MOVE = qualify_int(PKG, 'y_move')
-NUM_STABS = qualify_int(PKG, 'num_stabs')
-RAN_MIN = qualify_int(PKG, 'ran_min')
-RAN_MAX = qualify_int(PKG, 'ran_max')
-Z_RETRACT = qualify_int(PKG, 'z_retract')
+X_START = qualify_int('x_start')
+Y_START = qualify_int('y_start')
+X_MAX = qualify_int('x_max')
+Y_MAX = qualify_int('y_max')
+Z_MAX = qualify_int('z_max')
+Z_TRANSLATE = qualify_int('z_translate')
+X_MOVE = qualify_int('x_move')
+Y_MOVE = qualify_int('y_move')
+NUM_STABS = qualify_int('num_stabs')
+RAN_MIN = qualify_int('ran_min')
+RAN_MAX = qualify_int('ran_max')
+Z_RETRACT = qualify_int('z_retract')
 
-WEED_TYPE = get_config_value('weed_type', str).lower()
+WEED_TYPE = get_config_value(PKG, 'weed_type', str).lower()
 if WEED_TYPE not in ['weed', 'safe-remove', 'both']:
 	device.log('Weed type invalid. Must be WEED, SAFE-REMOVE or BOTH', 'error')
 	sys.exit()
