@@ -52,7 +52,7 @@ def weed_scan():
 				coord.set_pos('x', X_MAX)
 			else:
 				coord.set_pos('x', coord.get_pos('x') + X_MOVE)
-			device.move_absolute(coord.get(), 100, coord.get_offset())
+			coord.move_abs()
 			device.execute_script(label = 'plant-detection')
 	""" start scan """
 	coord = Coordinate(X_START, Y_START)
@@ -77,7 +77,6 @@ def water_weeds():
 	for weed_point in weed_points:
 		coord.set_coordinate(weed_point['x'], weed_point['y'])
 		coord.move_abs()
-		#device.move_absolute(coord.get(), 100, coord.get_offset())
 		device.write_pin(PIN_WATER, 1, 0)
 		device.wait(1000)
 		device.write_pin(PIN_WATER, 0, 0)
@@ -87,25 +86,25 @@ def smush_weeds():
 	coord = Coordinate()
 	def move_height():
 		coord.set_coordinate(device.get_current_position('x'), device.get_current_position('y'), Z_TRANSLATE)
-		device.move_absolute(coord.get(), 100, coord.get_offset())
+		coord.move_abs()
 
 	device.execute(weeder_tool_retrieve_sequence_id)
 	for weed_point in weed_points:
 		move_height()
 		coord.set_coordinate(weed_point['x'], weed_point['y'])
-		device.move_absolute(coord.get(), 100, coord.get_offset())
+		coord.move_abs()
 		for i in range(NUM_STABS):
 			x = randint(RAN_MIN, RAN_MAX)
 			y = randint(RAN_MIN, RAN_MAX)
 			x *= 1 if randint(0, 1) else -1
 			y *= 1 if randint(0, 1) else -1
 			coord.set_offset(x, y)
-			device.move_absolute(coord.get(), 100, coord.get_offset())
+			coord.move_abs()
 			coord.set_pos('z', Z_MAX)
-			device.move_absolute(coord.get(), 100, coord.get_offset())
+			coord.move_abs()
 			coord.set_offset(0, 0, 0)
 			coord.set_pos('z', device.get_current_position('z') + Z_RETRACT)
-			device.move_absolute(coord.get(), 100, coord.get_offset())
+			coord.move_abs()
 	move_height()
 	device.execute(weeder_tool_return_sequence_id)
 
