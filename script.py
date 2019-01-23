@@ -28,9 +28,7 @@ def qualify_sequence(seq_name):
 			input_errors.append('Failed to find sequence ID for {}'.format(seq_name))
 	return None
 
-def del_all_points(points):
-	device.log('Delete all points function...')
-	device.log('Points: {}'.format(json.dumps(points)))
+def del_all_points():
 	for point in points:
 		try:
 			app.delete('points', point['id'])
@@ -38,7 +36,7 @@ def del_all_points(points):
 		except:
 			device.log("App Error - Point ID: {}".format(point['id']), 'error')
 
-def del_all_weeds(points):
+def del_all_weeds():
 	for point in points:
 		if 'weed' in point['name'].lower():
 			try:
@@ -151,25 +149,20 @@ else:
 	device.log('No errors detected')
 
 device.write_pin(PIN_LIGHTS, 1, 0)
+
 points = app.get_points()
-device.log('App.getpoints: {}'.format(points))
-del_all_points(points)
-device.sync()
-device.log('Device Synced!')
+if len(points):
+	del_all_points()
+	device.sync()
+
 weed_scan()
 points = app.get_points()
 weed_points = get_weed_points()
-device.log('Weed Points: {}'.format(json.dumps(weed_points)))
-device.log('Scan found {} weeds.'.format(weed_points))
 if len(weed_points):
 	if water_tool_retrieve_sequence_id:
 		water_weeds()
 	smush_weeds()
+else:
+	device.log('No weeds detected, going home...')
 device.home('all')
 device.write_pin(PIN_LIGHTS, 0, 0)
-"""
-del_all_points(points)
-device.sync()
-weed_scan()
-device.sync()
-"""
