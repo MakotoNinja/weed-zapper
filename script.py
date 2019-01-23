@@ -32,7 +32,6 @@ def del_all_points():
 	for point in points:
 		try:
 			app.delete('points', point['id'])
-			device.log('Point deleted.')
 		except:
 			device.log("App Error - Point ID: {}".format(point['id']), 'error')
 
@@ -65,15 +64,13 @@ def weed_scan():
 			coord.set_coordinate(X_START, Y_MAX)
 		else:
 			coord.set_coordinate(X_START, coord.get_pos('y') + Y_MOVE)
-		device.move_absolute(coord.get(), 100, coord.get_offset())
+		coord.move_abs()
 		device.execute_script(label = 'plant-detection')
 		scan_line()
 	device.sync()
 	device.log('Scan Complete.', 'info', ['toast'])
 
 def water_weeds():
-	device.log('Detected {} weeds'.format(len(weed_points)))
-	"""
 	device.execute(water_tool_retrieve_sequence_id)
 	coord = Coordinate(device.get_current_position('x'), device.get_current_position('y'), Z_TRANSLATE)
 	coord.move_abs()
@@ -85,7 +82,6 @@ def water_weeds():
 		device.wait(1000)
 		device.write_pin(PIN_WATER, 0, 0)
 	device.execute(water_tool_return_sequence_id)
-	"""
 
 def smush_weeds():
 	coord = Coordinate()
@@ -135,6 +131,11 @@ NUM_STABS = qualify_int(PKG, 'num_stabs')
 RAN_MIN = qualify_int(PKG, 'ran_min')
 RAN_MAX = qualify_int(PKG, 'ran_max')
 Z_RETRACT = qualify_int(PKG, 'z_retract')
+
+WEED_TYPE = get_config_value('weed_type').lower()
+if WEED_TYPE not in ['weed', 'safe-remove', 'both']:
+	device.log('Weed type invalid. Must be WEED, SAFE-REMOVE or BOTH', 'error')
+	sys.exit()
 
 water_tool_retrieve_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_water_retrieve', str)) #optional
 water_tool_return_sequence_id = qualify_sequence(get_config_value(PKG, 'tool_water_return', str)) #optional
