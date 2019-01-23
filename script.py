@@ -63,7 +63,7 @@ def weed_scan():
 		if coord.get_axis_position('y') + Y_MOVE > Y_MAX:
 			coord.set_coordinate(X_START, Y_MAX)
 		else:
-			coord.set_coordinate(X_START, coord.get_pos('y') + Y_MOVE)
+			coord.set_coordinate(X_START, coord.get_axis_position('y') + Y_MOVE)
 		coord.move_abs()
 		device.execute_script(label = 'plant-detection')
 		scan_line()
