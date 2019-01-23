@@ -30,7 +30,7 @@ def qualify_sequence(seq_name):
 
 def del_all_points(points):
 	device.log('Delete all points function...')
-	device.log('Points: {}'.format(json.dumps(points))
+	device.log('Points: {}'.format(json.dumps(points)))
 	for point in points:
 		try:
 			app.delete('points', point['id'])
