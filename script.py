@@ -144,9 +144,12 @@ if len(input_errors):
 	for err in input_errors:
 		device.log(err, 'error', ['toast'])
 	sys.exit()
+else:
+	device.log('No errors detected')
 
 device.write_pin(PIN_LIGHTS, 1, 0)
 points = app.get_points()
+device.log('About to delete all points')
 del_all_points(points)
 device.sync()
 weed_scan()
