@@ -45,6 +45,10 @@ def del_all_weeds():
 	return num_weeds
 
 def weed_scan():
+	""" pause before taking image """
+	def plant_detection():
+		device.wait(1000)
+		device.execute_script(label = 'plant-detection')
 	""" scans length of X axis """
 	def scan_line():
 		while device.get_current_position('x') < X_MAX:
@@ -53,7 +57,7 @@ def weed_scan():
 			else:
 				coord.set_axis_position('x', coord.get_axis_position('x') + X_MOVE)
 			coord.move_abs()
-			device.execute_script(label = 'plant-detection')
+			plant_detection();
 	""" start scan """
 	coord = Coordinate(X_START, Y_START)
 	coord.move_abs()
@@ -65,7 +69,7 @@ def weed_scan():
 		else:
 			coord.set_coordinate(X_START, coord.get_axis_position('y') + Y_MOVE)
 		coord.move_abs()
-		device.execute_script(label = 'plant-detection')
+		plant_detection();
 		scan_line()
 	device.sync()
 	device.log('Scan Complete.', 'info', ['toast'])
@@ -108,7 +112,7 @@ def smush_weeds():
 	device.execute(weeder_tool_return_sequence_id)
 
 def get_weed_points():
-	device.log('Getting weed points of type: {}'.format(WEED_TYPE))
+	device.log('Getting weed points of type: "{}""'.format(WEED_TYPE))
 	types = ['weed', 'safe-remove weed'] if WEED_TYPE == 'both' else [WEED_TYPE]
 	device.log('Weed Type(s): {}'.format(json.dumps(types)))
 	wp = []
