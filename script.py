@@ -94,17 +94,16 @@ def smush_weeds():
 		coord.set_coordinate(weed_point['x'], weed_point['y'])
 		coord.move_abs()
 		for i in range(NUM_STABS):
-			x = randint(RAN_MIN, RAN_MAX)
-			y = randint(RAN_MIN, RAN_MAX)
-			x *= 1 if randint(0, 1) else -1
-			y *= 1 if randint(0, 1) else -1
-			coord.set_offset(x, y)
-			coord.move_abs()
-			coord.set_axis_position('z', Z_MAX)
-			coord.move_abs()
-			coord.set_offset(0, 0, 0)
-			coord.set_axis_position('z', device.get_current_position('z') + Z_RETRACT)
-			coord.move_abs()
+			x = randint(RAN_MIN, RAN_MAX)		# random offset x
+			y = randint(RAN_MIN, RAN_MAX)		# random offset y
+			x *= 1 if randint(0, 1) else -1		# pos or neg
+			y *= 1 if randint(0, 1) else -1		# pos or neg
+			coord.set_offset(x, y)				# set the offset
+			coord.move_abs()					# move to offset
+			coord.set_axis_position('z', Z_MAX)	# set stabbing depth
+			coord.move_abs()					# stab weed
+			coord.set_axis_position('z', device.get_current_position('z') + Z_RETRACT)	# set retract height
+			coord.move_abs()					# retract stabber
 	move_height()
 	device.execute(weeder_tool_return_sequence_id)
 
