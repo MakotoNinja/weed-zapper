@@ -29,7 +29,7 @@ def del_all_weeds():
 def weed_scan():
 	""" pause before taking image """
 	def plant_detection():
-		device.wait(3000)
+		device.wait(1000)
 		device.execute_script(label = 'plant-detection')
 	""" scans length of X axis """
 	def scan_line():
@@ -38,7 +38,6 @@ def weed_scan():
 				coord.set_axis_position('x', X_MAX)
 			else:
 				coord.set_axis_position('x', coord.get_axis_position('x') + X_MOVE)
-			coord.move_abs()
 			plant_detection();
 	""" start scan """
 	coord = Coordinate(X_START, Y_START)
@@ -96,21 +95,17 @@ PIN_LIGHTS = 7
 PIN_WATER = 8
 PIN_ZAPPER = 10
 PKG = 'Weed Zapper'
-device.log('INIT')
+
 X_START = Qualify.integer(PKG, 'x_start')
-device.log('X_START: {}'.format(X_START))
 Y_START = Qualify.integer(PKG, 'y_start')
-device.log('Y_START: {}'.format(Y_START))
 X_MAX = Qualify.integer(PKG, 'x_max')
 Y_MAX = Qualify.integer(PKG, 'y_max')
-device.log('Y_MAX: {}'.format(Y_MAX))
 ZAP_HEIGHT = Qualify.integer(PKG, 'zap_height')
 Z_TRANSLATE = Qualify.integer(PKG, 'z_translate')
 X_MOVE = Qualify.integer(PKG, 'x_move')
 Y_MOVE = Qualify.integer(PKG, 'y_move')
-device.log('Y_MOVE: {}'.format(Y_MOVE))
 AREA_SIZE = Qualify.integer(PKG, 'area_size')
-device.log('AREA_SIZE: {}'.format(AREA_SIZE))
+
 WEED_TYPE = get_config_value(PKG, 'weed_type', str).lower()
 if WEED_TYPE not in ['weed', 'safe-remove', 'both']:
 	device.log('Weed type invalid. Must be WEED, SAFE-REMOVE or BOTH', 'error')
@@ -137,6 +132,7 @@ if len(points):
 weed_scan()
 points = app.get_points()
 weed_points = get_weed_points()
+device.log(json.dumps(weed_points))
 if len(weed_points):
 	if water_tool_retrieve_sequence_id:
 		water_weeds()
