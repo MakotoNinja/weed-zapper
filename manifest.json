@@ -5,10 +5,10 @@
 	"description": "A weeding routine for Farmbot.",
 	"version": "1.0.1",
 	"min_os_version_major": 6,
-	"url": "https://raw.githubusercontent.com/MakotoNinja/weeder-zapper/master/manifest.json",
-	"zip": "https://github.com/MakotoNinja/weeder-zapper/archive/master.zip",
+	"url": "https://raw.githubusercontent.com/MakotoNinja/weed-zapper/master/manifest.json",
+	"zip": "https://github.com/MakotoNinja/weed-zapper/archive/master.zip",
 	"executable": "python",
-	"args": ["weeder-zapper-master/script.py"],
+	"args": ["weed-zapper-master/script.py"],
 	"config": [
 		{"name": "x_start", "label": "Start X", "value": 0 },
 		{"name": "y_start", "label": "Start Y", "value": 0 },
