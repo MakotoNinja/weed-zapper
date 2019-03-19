@@ -99,7 +99,7 @@ PKG = 'Weed Zapper'
 device.log('INIT')
 X_START = Qualify.integer(PKG, 'x_start')
 device.log('X_START: {}'.format(X_START))
-Y_START = Qualify.int(PKG, 'y_start')
+Y_START = Qualify.integer(PKG, 'y_start')
 X_MAX = Qualify.integer(PKG, 'x_max')
 Y_MAX = Qualify.integer(PKG, 'y_max')
 ZAP_HEIGHT = Qualify.integer(PKG, 'zap_height')
