@@ -106,8 +106,8 @@ ZAP_HEIGHT = Qualify.integer(PKG, 'zap_height')
 Z_TRANSLATE = Qualify.integer('z_translate')
 X_MOVE = Qualify.integer(PKG, 'x_move')
 Y_MOVE = Qualify.integer(PKG, 'y_move')
-AREA_SIZE = Qualify.integer('area_size')
-
+AREA_SIZE = Qualify.integer(PKG, 'area_size')
+device.log('AREA_SIZE: {}'.format(AREA_SIZE))
 WEED_TYPE = get_config_value(PKG, 'weed_type', str).lower()
 if WEED_TYPE not in ['weed', 'safe-remove', 'both']:
 	device.log('Weed type invalid. Must be WEED, SAFE-REMOVE or BOTH', 'error')
