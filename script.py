@@ -134,8 +134,6 @@ points = app.get_points()
 weed_points = get_weed_points()
 device.log(json.dumps(weed_points))
 if len(weed_points):
-	if water_tool_retrieve_sequence_id:
-		water_weeds()
 	zap_weeds()
 else:
 	device.log('No weeds detected, going home...')
