@@ -59,26 +59,20 @@ def zap_weeds():
 	coord = Coordinate()
 	device.execute(weeder_tool_retrieve_sequence_id)
 	for weed_point in weed_points:
-		coord.set_coordinate(device.get_current_position('x'), device.get_current_position('y'), Z_TRANSLATE)
-		coord.set_coordinate(weed_point['x'] - (AREA_SIZE / 2), weed_point['y'] - (AREA_SIZE / 2))
-		coord.set_axis_position('z', ZAP_HEIGHT)
+		coord.set_coordinate(z=Z_TRANSLATE)						# move up to translate height
+		coord.set_coordinate(weed_point['x'], weed_point['y'])	# move to point
+		coord.set_axis_position('z', ZAP_HEIGHT)				# move down to zapping height
+		coord.set_offset(-(AREA_SIZE / 2), -(AREA_SIZE / 2))	# offset x and y half of area
+		coord.set_speed(25)
 		device.write_pin(PIN_ZAPPER, 1, 0)
-		i = j = 0
-		while(i < AREA_SIZE):
+		for i in range(AREA_SIZE):
 			if coord.get_offset_axis_position('x') > 0:
-				coord.set_offset_axis_position('x', coord.get_axis_position('x') + AREA_SIZE)
-				increment = -1
+				coord.set_offset_axis_position('x', -(AREA_SIZE / 2))
 			else:
-				coord.set_offset_axis_position('x', 0, False)
-				increment = 1
-			while(j < AREA_SIZE):
-				coord.set_offset_axis_position('x', coord.get_offset_axis_position('x') + increment)
-				j += 1
-			j = 0
+				coord.set_offset_axis_position('x', AREA_SIZE / 2)
 			coord.set_offset_axis_position('y', coord.get_offset_axis_position('y') + 1)
-			i += 1
 		device.write_pin(PIN_ZAPPER, 0, 0)
-	coord.set_coordinate(device.get_current_position('x'), device.get_current_position('y'), Z_TRANSLATE)
+		coord.set_coordinate(z=Z_TRANSLATE)
 	device.execute(weeder_tool_return_sequence_id)
 
 def get_weed_points():
