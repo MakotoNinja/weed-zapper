@@ -69,13 +69,13 @@ def zap_weeds():
 			if coord.get_offset_axis_position('x') > 0:
 				#coord.set_offset_axis_position('x', -(AREA_SIZE / 2))
 				for j in range(AREA_SIZE):
-					coord.set_offset_axis_position('x', (AREA_SIZE / 2) - j)
-					device.wait(500)
+					coord.set_offset_axis_position('x', (AREA_SIZE / 2) - j + 1)
+					device.wait(ZAP_TIMEOUT)
 			else:
 				#coord.set_offset_axis_position('x', AREA_SIZE / 2)
 				for j in range(AREA_SIZE):
-					coord.set_offset_axis_position('x', -(AREA_SIZE / 2) + j)
-					device.wait(500)
+					coord.set_offset_axis_position('x', -(AREA_SIZE / 2) + j + 1)
+					device.wait(ZAP_TIMEOUT)
 			coord.set_offset_axis_position('y', coord.get_offset_axis_position('y') + 1)
 		device.write_pin(PIN_ZAPPER, 0, 0)
 		coord.set_speed(100)
@@ -104,6 +104,7 @@ X_MAX = Qualify.integer(PKG, 'x_max')
 Y_MAX = Qualify.integer(PKG, 'y_max')
 ZAP_HEIGHT = Qualify.integer(PKG, 'zap_height')
 ZAP_SPEED = Qualify.integer(PKG, 'zap_speed')
+ZAP_TIMEOUT = Qualify.integer(PKG, 'zap_timeout')
 Z_TRANSLATE = Qualify.integer(PKG, 'z_translate')
 X_MOVE = Qualify.integer(PKG, 'x_move')
 Y_MOVE = Qualify.integer(PKG, 'y_move')
