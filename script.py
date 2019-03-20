@@ -56,14 +56,14 @@ def weed_scan():
 	device.log('Scan Complete.', 'info', ['toast'])
 
 def zap_weeds():
-	coord = Coordinate()
 	device.execute(weeder_tool_retrieve_sequence_id)
+	coord = Coordinate(device.get_current_position('x'), device.get_current_position('y'), move_abs=False)
 	for weed_point in weed_points:
 		coord.set_coordinate(z=Z_TRANSLATE)						# move up to translate height
 		coord.set_coordinate(weed_point['x'], weed_point['y'])	# move to point
 		coord.set_axis_position('z', ZAP_HEIGHT)				# move down to zapping height
 		coord.set_offset(-(AREA_SIZE / 2), -(AREA_SIZE / 2))	# offset x and y half of area
-		coord.set_speed(25)
+		coord.set_speed(5)
 		device.write_pin(PIN_ZAPPER, 1, 0)
 		for i in range(AREA_SIZE):
 			if coord.get_offset_axis_position('x') > 0:
@@ -72,6 +72,7 @@ def zap_weeds():
 				coord.set_offset_axis_position('x', AREA_SIZE / 2)
 			coord.set_offset_axis_position('y', coord.get_offset_axis_position('y') + 1)
 		device.write_pin(PIN_ZAPPER, 0, 0)
+		coord.set_speed(100)
 		coord.set_coordinate(z=Z_TRANSLATE)
 	device.execute(weeder_tool_return_sequence_id)
 
