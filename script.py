@@ -57,7 +57,7 @@ def weed_scan():
 
 def zap_weeds():
 	device.execute(weeder_tool_retrieve_sequence_id)
-	coord = Coordinate(x=device.get_current_position('x'), y=device.get_current_position('y'), move_abs=False)
+	coord = Coordinate(device.get_current_position('x'), device.get_current_position('y'))
 	device.log('coord: {}'.format(json.dumps(coord.get_coordinate())))
 	for weed_point in weed_points:
 		coord.set_coordinate(z=Z_TRANSLATE)						# move up to translate height
@@ -128,7 +128,7 @@ if len(points):
 weed_scan()
 points = app.get_points()
 weed_points = get_weed_points()
-device.log(json.dumps(weed_points))
+#device.log(json.dumps(weed_points))
 if len(weed_points):
 	zap_weeds()
 else:
