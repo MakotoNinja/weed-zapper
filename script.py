@@ -69,7 +69,7 @@ def zap_weeds():
 			if coord.get_offset_axis_position('x') > 0:
 				#coord.set_offset_axis_position('x', -(AREA_SIZE / 2))
 				for j in range(AREA_SIZE):
-					coord.set_offset_axis_position('x', (AREA_SIZE / 2) - j + 1)
+					coord.set_offset_axis_position('x', (AREA_SIZE / 2) - j - 1)
 					device.wait(ZAP_TIMEOUT)
 			else:
 				#coord.set_offset_axis_position('x', AREA_SIZE / 2)

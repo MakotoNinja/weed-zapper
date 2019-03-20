@@ -71,7 +71,7 @@ class Coordinate:
 		return self.speed
 
 	def print_me(self):
-		print(self.get_coordinate())
+		print('Coordinate: {}, Offset: {}'.format(self.get_coordinate(), self.get_offset()))
 
 	def print_offset(self):
 		print(self.get_offset())
