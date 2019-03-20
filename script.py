@@ -57,14 +57,14 @@ def weed_scan():
 
 def zap_weeds():
 	device.execute(weeder_tool_retrieve_sequence_id)
-	coord = Coordinate(device.get_current_position('x'), device.get_current_position('y'))
+	coord = Coordinate(device.get_current_position('x') + LASER_OFFSET_X, device.get_current_position('y') + LASER_OFFSET_Y)
 	device.log('coord: {}'.format(json.dumps(coord.get_coordinate())))
 	for weed_point in weed_points:
 		coord.set_coordinate(z=Z_TRANSLATE)						# move up to translate height
 		coord.set_coordinate(weed_point['x'], weed_point['y'])	# move to point
 		coord.set_axis_position('z', ZAP_HEIGHT)				# move down to zapping height
 		coord.set_offset(-(AREA_SIZE / 2), -(AREA_SIZE / 2))	# offset x and y half of area
-		coord.set_speed(5)
+		coord.set_speed(1)
 		device.write_pin(PIN_ZAPPER, 1, 0)
 		for i in range(AREA_SIZE):
 			if coord.get_offset_axis_position('x') > 0:
@@ -101,6 +101,8 @@ Z_TRANSLATE = Qualify.integer(PKG, 'z_translate')
 X_MOVE = Qualify.integer(PKG, 'x_move')
 Y_MOVE = Qualify.integer(PKG, 'y_move')
 AREA_SIZE = Qualify.integer(PKG, 'area_size')
+LASER_OFFSET_X = Qualify.integer(PKG, 'offset_x')
+LASER_OFFSET_Y = Qualify.integer(PKG, 'offset_y')
 
 WEED_TYPE = get_config_value(PKG, 'weed_type', str).lower()
 if WEED_TYPE not in ['weed', 'safe-remove', 'both']:

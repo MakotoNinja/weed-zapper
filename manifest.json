@@ -3,7 +3,7 @@
 	"language": "python",
 	"author": "MakotoNinja",
 	"description": "A weeding routine for Farmbot.",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"min_os_version_major": 6,
 	"url": "https://raw.githubusercontent.com/MakotoNinja/weed-zapper/master/manifest.json",
 	"zip": "https://github.com/MakotoNinja/weed-zapper/archive/master.zip",
@@ -21,6 +21,8 @@
 		{"name": "tool_weed_retrieve", "label": "Weed Tool Retrieval Sequence", "value": "" },
 		{"name": "tool_weed_return", "label": "Weed Tool Return Sequence", "value": "" },
 		{"name": "area_size", "label": "Size of Zap Area (MM SQ)", "value": 5 },
-		{"name": "weed_type", "label": "Weed Type (WEED, SAFE-REMOVE, BOTH)", "value": "WEED" }
+		{"name": "weed_type", "label": "Weed Type (WEED, SAFE-REMOVE, BOTH)", "value": "WEED" },
+		{"name": "offset_x", "label": "Laser Offset X", "value": 5 },
+		{"name": "offset_y", "label": "Laser Offset Y", "value": 5 }
 	]
 }
