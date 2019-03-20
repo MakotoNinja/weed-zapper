@@ -67,12 +67,19 @@ def zap_weeds():
 		device.write_pin(PIN_ZAPPER, 1, 0)
 		for i in range(AREA_SIZE):
 			if coord.get_offset_axis_position('x') > 0:
-				coord.set_offset_axis_position('x', -(AREA_SIZE / 2))
+				#coord.set_offset_axis_position('x', -(AREA_SIZE / 2))
+				for j in range(AREA_SIZE):
+					coord.set_offset_axis_position('x', (AREA_SIZE / 2) - j)
+					device.wait(500)
 			else:
-				coord.set_offset_axis_position('x', AREA_SIZE / 2)
+				#coord.set_offset_axis_position('x', AREA_SIZE / 2)
+				for j in range(AREA_SIZE):
+					coord.set_offset_axis_position('x', -(AREA_SIZE / 2) + j)
+					device.wait(500)
 			coord.set_offset_axis_position('y', coord.get_offset_axis_position('y') + 1)
 		device.write_pin(PIN_ZAPPER, 0, 0)
 		coord.set_speed(100)
+		coord.set_offset(0, 0)
 		coord.set_coordinate(z=Z_TRANSLATE)
 	device.execute(weeder_tool_return_sequence_id)
 
